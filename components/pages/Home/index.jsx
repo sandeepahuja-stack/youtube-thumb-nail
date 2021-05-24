@@ -9,6 +9,11 @@ function Home() {
   const [value, setValue] = useState('');
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
   const [loader, isLoading] = useState(false);
+
+
+  const [videoData, updateVideoData] = useState([]);
+  const [videoTitle, updateVideoTitle] = useState('');
+
   function handleChange(e) {
     setValue(e.target.value);
   }
@@ -17,6 +22,21 @@ function Home() {
     fetch(`http://localhost:4000/videoInfo?videoURL=${value}`)
     .then(res => res.json())
     .then(json => {
+      const formatsAvailable = json.formats.filter(el=> el.audioCodec != null && el.qualityLabel != null);
+      let videoAry = []
+
+      for(let i=0;i<json.formats.length;i++){
+        if(json.formats[i].container != "mp4"){
+          continue;
+        }
+        if(json.formats[i].audioCodec == null){
+          continue;
+        }
+        videoAry.push({itag: json.formats[i].itag , label : json.formats[i].qualityLabel ?? 'Mp3' })
+        
+      }
+      updateVideoData(videoAry);
+      updateVideoTitle(json['videoDetails']['title']);
       updateVideoDataThumbNails(json['videoDetails']['thumbnails']);
       isLoading(false);
     });
@@ -59,6 +79,7 @@ function Home() {
         <div className="loader-background" />
       </>
       }
+      <div >
       <div className="container py-5">
         <div className="row justify-content-center ">
           <div className="col-md-8 mb-2">
@@ -69,22 +90,45 @@ function Home() {
           </div>
         </div>
       </div>
+      
      
-
-      <div className="container text-center">
-        {videoDataThumbNails.length > 0 && <img src={videoDataThumbNails[0].url} />}
-        <div className="row justify-content-around mb-5">
-          {videoDataThumbNails.map(thumbNailData=>{
-            return <div key={thumbNailData.url} className="col-md-2 mt-5" >
-              
-              <button className="btn btn-danger"  onClick={()=>{
-                downloadImage(thumbNailData.url);
-              }} >{thumbNailData.width} * {thumbNailData.height}</button>
-            
-            
+      {videoTitle && <h2 className="text-center mb-5">{videoTitle}</h2>}
+      {videoDataThumbNails.length > 0 && 
+        <>
+          {/* <hr/> */}
+          <div className="container text-center  mb-5">
+            {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
+            <img src={videoDataThumbNails[videoDataThumbNails.length-1].url} style={{width:'100%'}}/>
+            <p className="font-weight-bold mt-5">Thumbnails</p>
+            <div className="row justify-content-around">
+              {videoDataThumbNails.map(thumbNailData=>{
+                return <div key={thumbNailData.url} className="col-md-2 mb-2" >
+                  
+                  <button className="btn btn-danger"  onClick={()=>{
+                    downloadImage(thumbNailData.url);
+                  }} >{thumbNailData.width} * {thumbNailData.height}</button>
+                
+                
+                </div>
+              })}
             </div>
-          })}
-        </div>
+            {videoData.length > 0 &&
+              <>
+                <p className="font-weight-bold mt-5">Videos</p>
+                <div className="row justify-content-around">
+                  {videoData.map(video=>{
+                    return <div key={video.label} className="col-md-2" >
+                      <a href={`http://localhost:4000/download?videoURL=${value}&itag=${video.itag}`} target="_blank" className="btn-danger btn" >{video.label}</a>
+                    </div>
+                  })}
+                </div>
+              </>
+            }
+            
+          </div>
+          <hr className="my-5" />
+        </>
+      }
       </div>
       
       

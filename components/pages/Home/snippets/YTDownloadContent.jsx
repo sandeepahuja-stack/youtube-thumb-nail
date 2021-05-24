@@ -8,19 +8,19 @@ function YTDownloadContent() {
           
           <div className="row justify-content-around my-5">
             <div className="mb-2 col-sm-12 col-md-2 text-center">
-              <img src="https://yt1s.com/statics/image/icon1.svg" alt="Youtube to MP4" />
+              <img src="/static/svg/icon1.svg" alt="Youtube to MP4" />
             </div>
             <div className="mb-2 col-sm-12 col-md-2 text-center">
-              <img src="https://yt1s.com/statics/image/icon2.svg" alt="Youtube to MP3" />
+              <img src="/static/svg/icon2.svg" alt="Youtube to MP3" />
             </div>
             <div className="mb-2 col-sm-12 col-md-2 text-center">
-              <img src="https://yt1s.com/statics/image/icon3.svg" alt="Youtube to 3GP" />
+              <img src="/static/svg/icon3.svg" alt="Youtube to 3GP" />
             </div>
             <div className="mb-2 col-sm-12 col-md-2 text-center">
-              <img src="https://yt1s.com/statics/image/icon4.svg" alt="Youtube to WEBM" />
+              <img src="/static/svg/icon4.svg" alt="Youtube to WEBM" />
             </div>
             <div className="mb-2 col-sm-12 col-md-2 text-center">
-              <img src="https://yt1s.com/statics/image/icon5.svg" alt="Youtube to M4A" />
+              <img src="/static/svg/icon5.svg" alt="Youtube to M4A" />
             </div>
           </div>
           <p className="text-dark  text-center ">

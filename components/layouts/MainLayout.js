@@ -1,10 +1,14 @@
 import Link from "next/link";
-
+import Head from 'next/head'
 
 export default function MainLayout({ children }) {
   
   return (
     <>
+    <Head>
+        <title>My page title</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
      <section className="py-3">
         
         <h1 className="text-center  h2 "><Link href="/"><a className="text-danger text-decoration-none">Youtube Downloader</a></Link></h1>
