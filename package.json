@@ -17,6 +17,7 @@
     "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-define": "^2.0.0"
   },
   "scripts": {
