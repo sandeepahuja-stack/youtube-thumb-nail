@@ -16,13 +16,7 @@
     "request": "^2.88.2",
     "ytdl-core": "^4.5.0"
   },
-  "devDependencies": {
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-define": "^2.0.0"
-  },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "next build && next export && git add out/ && git commit -m \"Deploy gh-pages\" && git subtree push --prefix out origin gh-pages",
     "dev": "next",
     "start": "next start",
     "build": "next build"
