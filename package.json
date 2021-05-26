@@ -18,7 +18,9 @@
   },
   "scripts": {
     "dev": "next",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p $PORT",
+    "start:dev": "next start",
+    "start:prod": "next start -p 80",
     "build": "next build"
   },
   "repository": {
