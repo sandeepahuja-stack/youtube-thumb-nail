@@ -22,9 +22,9 @@ function Home() {
     fetch(`${API_URL}check/streams/`, {
       method: 'post',
       headers: {'Content-Type':'application/json'},
-      body: {
+      body: JSON.stringify({
        url: value
-      }
+      })
      })
     .then(res => res.json())
     .then(json => {
