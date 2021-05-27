@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
-
+const API_URL = process.env.API_URL;
 
 
 function Home() {
@@ -19,7 +19,13 @@ function Home() {
   }
   function convertVideo() {
     isLoading(true);
-    fetch(`http://localhost:4000/videoInfo?videoURL=${value}`)
+    fetch(`${API_URL}check/streams/`, {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: {
+       url: value
+      }
+     })
     .then(res => res.json())
     .then(json => {
       const formatsAvailable = json.formats.filter(el=> el.audioCodec != null && el.qualityLabel != null);
