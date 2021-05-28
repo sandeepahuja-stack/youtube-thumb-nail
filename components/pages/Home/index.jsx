@@ -7,7 +7,7 @@ const API_URL = process.env.API_URL;
 
 function Home() {
   const [value, setValue] = useState('');
-  const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
+  const [videoDataThumbNails, updateVideoDataThumbNails] = useState({});
   const [loader, isLoading] = useState(false);
 
 
@@ -28,23 +28,17 @@ function Home() {
      })
     .then(res => res.json())
     .then(json => {
-      const formatsAvailable = json.formats.filter(el=> el.audioCodec != null && el.qualityLabel != null);
-      let videoAry = []
-
-      for(let i=0;i<json.formats.length;i++){
-        if(json.formats[i].container != "mp4"){
-          continue;
-        }
-        if(json.formats[i].audioCodec == null){
-          continue;
-        }
-        videoAry.push({itag: json.formats[i].itag , label : json.formats[i].qualityLabel ?? 'Mp3' })
-        
-      }
-      updateVideoData(videoAry);
-      updateVideoTitle(json['videoDetails']['title']);
-      updateVideoDataThumbNails(json['videoDetails']['thumbnails']);
-      isLoading(false);
+      
+    
+        console.log(json);
+     
+        const videoAry = json['resoltion']['mp4'];
+        updateVideoData(videoAry);
+        updateVideoTitle(json['title']);
+        updateVideoDataThumbNails(json['thumnail_url']);
+        isLoading(false);
+      
+      
     });
   }
   
@@ -99,20 +93,21 @@ function Home() {
       
      
       {videoTitle && <h2 className="text-center mb-5">{videoTitle}</h2>}
-      {videoDataThumbNails.length > 0 && 
+      {Object.keys(videoDataThumbNails).length > 0 && 
         <>
           {/* <hr/> */}
           <div className="container text-center  mb-5">
             {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
-            <img src={videoDataThumbNails[videoDataThumbNails.length-1].url} style={{width:'100%'}}/>
-            <p className="font-weight-bold mt-5">Thumbnails</p>
+            <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} style={{width:'100%'}}/>
+            <p className="font-weight-bold mt-5 h2">Download Thumbnails</p>
+            <hr />
             <div className="row justify-content-around">
-              {videoDataThumbNails.map(thumbNailData=>{
-                return <div key={thumbNailData.url} className="col-md-2 mb-2" >
+              {Object.keys(videoDataThumbNails).map(thumbNailKey=>{
+                return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-2 mb-2" >
                   
                   <button className="btn btn-danger"  onClick={()=>{
-                    downloadImage(thumbNailData.url);
-                  }} >{thumbNailData.width} * {thumbNailData.height}</button>
+                    downloadImage(videoDataThumbNails[thumbNailKey]);
+                  }} >{thumbNailKey} <img src="/static/svg/download.svg" height="15px" /></button>
                 
                 
                 </div>
@@ -120,11 +115,12 @@ function Home() {
             </div>
             {videoData.length > 0 &&
               <>
-                <p className="font-weight-bold mt-5">Videos</p>
+                <p className="font-weight-bold mt-5 h2">Download Videos</p>
+                <hr />
                 <div className="row justify-content-around">
                   {videoData.map(video=>{
-                    return <div key={video.label} className="col-md-2" >
-                      <a href={`http://localhost:4000/download?videoURL=${value}&itag=${video.itag}`} target="_blank" className="btn-danger btn" >{video.label}</a>
+                    return <div key={video} className="col-md-2 mb-2" >
+                      <a href={`http://localhost:4000/download?videoURL=${value}&itag=${video.itag}`} target="_blank" className="btn-danger btn" >{video} <img src="/static/svg/download.svg" height="15px" /> </a>
                     </div>
                   })}
                 </div>
