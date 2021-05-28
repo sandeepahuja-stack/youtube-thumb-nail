@@ -28,24 +28,25 @@ function Home() {
      })
     .then(res => res.json())
     .then(json => {
-      
-    
-        console.log(json);
-     
-        const videoAry = json['resoltion']['mp4'];
-        updateVideoData(videoAry);
-        updateVideoTitle(json['title']);
-        updateVideoDataThumbNails(json['thumnail_url']);
-        isLoading(false);
-      
-      
+      const videoAry = json['resolution']['mp4'];
+      updateVideoData(videoAry);
+      updateVideoTitle(json['title']);
+      updateVideoDataThumbNails(json['thumnailUrl']);
+      isLoading(false);  
     });
   }
   
 
-  function downloadImage(url) {
+  function download(pixel,type) {
     isLoading(true);
-    fetch(`http://localhost:4000/downloadImage?url=${url}&filename=image`)
+    fetch(`${API_URL}yt/download/${type}`, {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+       url: value,
+       pixel
+      })
+     })
     .then(res => res.json())
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
@@ -98,7 +99,7 @@ function Home() {
           {/* <hr/> */}
           <div className="container text-center  mb-5">
             {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
-            <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} style={{width:'100%'}}/>
+            <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} style={{width:'320px', height: '180px'}}/>
             <p className="font-weight-bold mt-5 h2">Download Thumbnails</p>
             <hr />
             <div className="row justify-content-around">
@@ -106,7 +107,7 @@ function Home() {
                 return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-2 mb-2" >
                   
                   <button className="btn btn-danger"  onClick={()=>{
-                    downloadImage(videoDataThumbNails[thumbNailKey]);
+                    download(thumbNailKey,'thumbnail');
                   }} >{thumbNailKey} <img src="/static/svg/download.svg" height="15px" /></button>
                 
                 
@@ -120,7 +121,11 @@ function Home() {
                 <div className="row justify-content-around">
                   {videoData.map(video=>{
                     return <div key={video} className="col-md-2 mb-2" >
-                      <a href={`http://localhost:4000/download?videoURL=${value}&itag=${video.itag}`} target="_blank" className="btn-danger btn" >{video} <img src="/static/svg/download.svg" height="15px" /> </a>
+                        <button className="btn btn-danger"  onClick={()=>{
+                          download(video,'video');
+                        }} >{video} <img src="/static/svg/download.svg" height="15px" /></button>
+                      
+                      
                     </div>
                   })}
                 </div>
