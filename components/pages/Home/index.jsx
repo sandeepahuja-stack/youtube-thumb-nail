@@ -40,7 +40,7 @@ function Home() {
   function download(pixel,type) {
     isLoading(true);
     
-    fetch(`${API_URL}yt/download/${type}`, {
+    fetch(`${API_URL}yt/download/${type}/`, {
       method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
