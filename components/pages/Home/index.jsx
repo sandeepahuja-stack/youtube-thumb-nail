@@ -39,6 +39,7 @@ function Home() {
 
   function download(pixel,type) {
     isLoading(true);
+    
     fetch(`${API_URL}yt/download/${type}`, {
       method: 'post',
       headers: {'Content-Type':'application/json'},
@@ -50,7 +51,7 @@ function Home() {
     .then(res => res.json())
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
-      downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
+      downloadLinkBtn.setAttribute('href',`/${json['downloadLink']}`);
       downloadLinkBtn.setAttribute('download','image');
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
