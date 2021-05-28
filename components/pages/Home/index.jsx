@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+// import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 const API_URL = process.env.API_URL;
@@ -13,6 +13,7 @@ function Home() {
 
   const [videoData, updateVideoData] = useState([]);
   const [videoTitle, updateVideoTitle] = useState('');
+  // const [downloadLink, updateDownLoadLink] = useState('');
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -40,18 +41,25 @@ function Home() {
   function download(pixel,type) {
     isLoading(true);
     
-    fetch(`${API_URL}yt/download/${type}/`, {
+    fetch(`${API_URL}download/${type}/`, {
       method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
        url: value,
-       pixel
+       pixel,
+       type
       })
      })
     .then(res => res.json())
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
-      downloadLinkBtn.setAttribute('href',`/${json['downloadLink']}`);
+      // console.log(json['downloadLink']);
+      // let link = 'http://35.154.100.89:8000/static/thumbnails/Mere-Haath-Mein-%7C-Fanaa--%7C-Sonu-Nigam-Cover%7C--Day-41-%7C-100-Day-Piano-Challenge-%7C-Manoj-Abraham.jpg';
+      // updateDownLoadLink(link);
+      downloadLinkBtn.setAttribute('href',`http://${json['downloadLink']}`);
+      // downloadLinkBtn.setAttribute('href',link);
+      // downloadLinkBtn.setAttribute('target',`_blank`);
+      // passHref={true}
       downloadLinkBtn.setAttribute('download','image');
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
@@ -62,6 +70,8 @@ function Home() {
   
   return (
     <>
+    {/* <Link href={`http://`+downloadLink} passHref={true} > <a>here download</a></Link> */}
+    {/* <Link href={`${downloadLink}`} passHref={false}><a className="text-danger text-decoration-none">Youtube Downloader</a></Link> */}
     { loader &&
       <>
         <div className="loader">
