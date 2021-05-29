@@ -56,14 +56,15 @@ function Home() {
       // console.log(json['downloadLink']);
       // let link = 'http://35.154.100.89:8000/static/thumbnails/Mere-Haath-Mein-%7C-Fanaa--%7C-Sonu-Nigam-Cover%7C--Day-41-%7C-100-Day-Piano-Challenge-%7C-Manoj-Abraham.jpg';
       // updateDownLoadLink(link);
-      downloadLinkBtn.setAttribute('href',`http://${json['downloadLink']}`);
+      downloadLinkBtn.setAttribute('href',`${json['downloadLink']}`);
       // downloadLinkBtn.setAttribute('href',link);
-      // downloadLinkBtn.setAttribute('target',`_blank`);
+       downloadLinkBtn.setAttribute('target',`_blank`);
       // passHref={true}
+	    console.log(json['downloadLink']);
       downloadLinkBtn.setAttribute('download','image');
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
-      downloadLinkBtn.remove();
+      //downloadLinkBtn.remove();
       isLoading(false);
     });
   }
