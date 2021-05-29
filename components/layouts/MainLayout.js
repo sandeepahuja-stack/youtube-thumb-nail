@@ -13,7 +13,7 @@ export default function MainLayout({ children }) {
         <title>My page title</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      { !!(pathname != '/') && <div className="  bg-dark-primary py-60" >
+      { !!(pathname != '/') && <div className=" px-3 bg-dark-primary py-60" >
             <div className="container py-5 bg-light-primary  hero-container">
                 <h1 className="text-center m-0  "><Link href="/"><a className="text-white text-decoration-none">Youtube Thumbnail Downloader</a></Link></h1>
                 <p className="text-center   font-weight-semi text-white">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>

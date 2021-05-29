@@ -51,13 +51,13 @@ function PostContent() {
   
   return (
     <>
-      <div className="bg-grey py-5">
+      <div className=" py-5">
         <div className="container">
           <div className="pb-3 ">
             <h2 className="text-center h1 ">The Best Youtube Thumbnail Downloader</h2>
             <p className="text-dark  text-center" >Text of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has </p>
           </div>
-          <div className="row justify-content-around mb-5">
+          <div className="row justify-content-around mb-5 px-2">
           {
             postContentAry1.map((postContentData,index) => {
               return (<div className="col-md-3 mb-3 px-2" key={postContentData.alt}>
@@ -66,7 +66,7 @@ function PostContent() {
             })
           }
           </div>
-          <div className="row justify-content-around mb-5">
+          <div className="row justify-content-around mb-5 px-2">
         {
           postContentAry2.map(postContentData => {
             return (<div className="col-md-3 mb-3 px-2" key={postContentData.alt}> 
