@@ -10,7 +10,7 @@ function Home() {
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState({});
   const [loader, isLoading] = useState(false);
 
-
+  const [videoDataWithAudio, updateVideoDataWithAudio] = useState([]);
   const [videoData, updateVideoData] = useState([]);
   const [videoTitle, updateVideoTitle] = useState('');
   // const [downloadLink, updateDownLoadLink] = useState('');
@@ -31,6 +31,7 @@ function Home() {
     .then(json => {
       const videoAry = json['resolution']['mp4'];
       updateVideoData(videoAry);
+      updateVideoDataWithAudio(json['resolution']['mp4Audio']);
       updateVideoTitle(json['title']);
       updateVideoDataThumbNails(json['thumnailUrl']);
       isLoading(false);  
@@ -60,11 +61,11 @@ function Home() {
       // downloadLinkBtn.setAttribute('href',link);
        downloadLinkBtn.setAttribute('target',`_blank`);
       // passHref={true}
-	    console.log(json['downloadLink']);
+	    // console.log(json['downloadLink']);
       downloadLinkBtn.setAttribute('download','image');
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
-      //downloadLinkBtn.remove();
+      downloadLinkBtn.remove();
       isLoading(false);
     });
   }
@@ -135,7 +136,7 @@ function Home() {
                     return <div key={video} className="col-md-2 mb-2" >
                         <button className="btn btn-danger"  onClick={()=>{
                           download(video,'video');
-                        }} >{video} <img src="/static/svg/download.svg" height="15px" /></button>
+                        }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mr-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                       
                       
                     </div>
