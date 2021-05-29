@@ -6,21 +6,21 @@ function PostContent() {
     {
       bg: 'bg1',
       heading: 'Fast and easy to use',
-      para: 'Using our Youtube downloader is the fast and easy way to download and save any YouTube video to MP3 or MP4. Simply copy YouTube URL, paste it on the search box and click on "Convert" button. No register accounts needed. ',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/clock.svg',
       alt: 'Fast and easy to use',
     },
     {
       bg: 'bg2',
       heading: 'Without limitation',
-      para: 'Download and convert YouTube videos as much as you want without limitation and always free. ',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/limit.svg',
       alt: 'Without limitation',
     },
     {
       bg: 'bg3',
       heading: '100% Safe and Clean',
-      para: 'With the rising awareness of device security, people attach great importance to personal data. The service is totally clean with no virus under intense supervision based on security database.',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/safe.svg',
       alt: '100% Safe and Clean',
     },
@@ -29,21 +29,21 @@ function PostContent() {
     {
       bg: 'bg4',
       heading: 'Full platforms supported',
-      para: 'We support all device platforms. Easy to convert YouTube videos to MP3 files regardless of whether you are using Windows, Mac or Linux, Android, iPhone. ',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/platform.svg',
       alt: 'Full platforms supported',
     },
     {
       bg: 'bg5',
       heading: 'Full file format supported',
-      para: 'We support all video and audio formats conversion. You can easily convert YouTube videos to MP3, 3GP, MP4, WMA, M4A, FLV, WEBM and MO formats, etc.',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/support.svg',
       alt: 'Full file format supported',
     },
     {
       bg: 'bg6',
       heading: 'Cloud support',
-      para: 'We support uploading the converted files to your DropBox and Google Drive. ',
+      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
       url: '/static/svg/cloud.svg',
       alt: 'Cloud support',
     },
@@ -51,21 +51,22 @@ function PostContent() {
   
   return (
     <>
-     <div className="container pb-5">
-        <div className="pb-3 ">
-          <h2 className="text-center  ">The Best Youtube Downloader</h2>
-          <p className="text-dark  text-center ">YT1s YouTube Downloader helps you save Youtube videos to your device. You can choose from a variety of formats and qualities to download.</p>
-        </div>
-        <div className="row justify-content-around mb-5">
-        {
-          postContentAry1.map((postContentData,index) => {
-            return (<div className="col-md-3 mb-3 px-2" key={postContentData.alt}>
-              <PostCard {...postContentData} />
-            </div>);
-          })
-        }
-        </div>
-        <div className="row justify-content-around mb-5">
+      <div className="bg-grey py-5">
+        <div className="container">
+          <div className="pb-3 ">
+            <h2 className="text-center h1 ">The Best Youtube Thumbnail Downloader</h2>
+            <p className="text-dark  text-center" >Text of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has </p>
+          </div>
+          <div className="row justify-content-around mb-5">
+          {
+            postContentAry1.map((postContentData,index) => {
+              return (<div className="col-md-3 mb-3 px-2" key={postContentData.alt}>
+                <PostCard {...postContentData} />
+              </div>);
+            })
+          }
+          </div>
+          <div className="row justify-content-around mb-5">
         {
           postContentAry2.map(postContentData => {
             return (<div className="col-md-3 mb-3 px-2" key={postContentData.alt}> 
@@ -73,6 +74,7 @@ function PostContent() {
             </div>);
           })
         }
+        </div>
         </div>
       </div>
     </>

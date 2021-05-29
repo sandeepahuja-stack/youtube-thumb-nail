@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 const API_URL = process.env.API_URL;
@@ -10,8 +10,8 @@ function Home() {
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState({});
   const [loader, isLoading] = useState(false);
 
-  const [videoDataWithAudio, updateVideoDataWithAudio] = useState([]);
-  const [videoData, updateVideoData] = useState([]);
+  // const [videoDataWithAudio, updateVideoDataWithAudio] = useState([]);
+  // const [videoData, updateVideoData] = useState([]);
   const [videoTitle, updateVideoTitle] = useState('');
   // const [downloadLink, updateDownLoadLink] = useState('');
 
@@ -29,9 +29,9 @@ function Home() {
      })
     .then(res => res.json())
     .then(json => {
-      const videoAry = json['resolution']['mp4'];
-      updateVideoData(videoAry);
-      updateVideoDataWithAudio(json['resolution']['mp4Audio']);
+      // const videoAry = json['resolution']['mp4'];
+      // updateVideoData(videoAry);
+      // updateVideoDataWithAudio(json['resolution']['mp4Audio']);
       updateVideoTitle(json['title']);
       updateVideoDataThumbNails(json['thumnailUrl']);
       isLoading(false);  
@@ -93,62 +93,72 @@ function Home() {
         <div className="loader-background" />
       </>
       }
+
       <div >
-      <div className="container py-5">
-        <div className="row justify-content-center ">
-          <div className="col-md-8 mb-2">
-            <input type="text" className="form-control border-danger input" placeholder="Paste your Youtube link here" onChange={handleChange} />
-          </div>
-          <div>
-            <button className="btn-danger btn " onClick={convertVideo} target="_blank">Convert</button>
-          </div>
-        </div>
-      </div>
-      
-     
-      {videoTitle && <h2 className="text-center mb-5">{videoTitle}</h2>}
-      {Object.keys(videoDataThumbNails).length > 0 && 
-        <>
-          {/* <hr/> */}
-          <div className="container text-center  mb-5">
-            {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
-            <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} style={{width:'320px', height: '180px'}}/>
-            <p className="font-weight-bold mt-5 h2">Download Thumbnails</p>
-            <hr />
-            <div className="row justify-content-around">
-              {Object.keys(videoDataThumbNails).map(thumbNailKey=>{
-                return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-2 mb-2" >
-                  
-                  <button className="btn btn-danger"  onClick={()=>{
-                    download(thumbNailKey,'thumbnail');
-                  }} >{thumbNailKey} <img src="/static/svg/download.svg" height="15px" /></button>
-                
-                
+        <div className="  bg-dark-primary py-60" >
+            <div className="container py-5 bg-light-primary  hero-container">
+                <h1 className="text-center m-0  "><Link href="/"><a className="text-white text-decoration-none">Youtube Thumbnail Downloader</a></Link></h1>
+                <p className="text-center   font-weight-semi text-white">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>
+            
+            
+              <div className="row justify-content-center ">
+                <div className="col-md-8 mb-2">
+                  <input type="text" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
                 </div>
-              })}
+                <div>
+                  <button className="btn-purple btn " onClick={convertVideo} target="_blank">Convert</button>
+                </div>
+              </div>
             </div>
-            {videoData.length > 0 &&
-              <>
-                <p className="font-weight-bold mt-5 h2">Download Videos</p>
-                <hr />
+        </div>
+        
+        {videoTitle && (<>
+          
+          <h2 className="text-center my-5 h1">{videoTitle}</h2>
+          {Object.keys(videoDataThumbNails).length > 0 && 
+            <>
+              
+              {/* <hr/> */}
+              <div className="container text-center  mb-5">
+                {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
+                <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} className="mb-5" style={{width:'320px', height: '180px'}}/>
+                {/* <p className="font-weight-bold mt-5 h2">Download Thumbnails</p> */}
+                {/* <hr /> */}
                 <div className="row justify-content-around">
-                  {videoData.map(video=>{
-                    return <div key={video} className="col-md-2 mb-2" >
-                        <button className="btn btn-danger"  onClick={()=>{
-                          download(video,'video');
-                        }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                  {Object.keys(videoDataThumbNails).map(thumbNailKey=>{
+                    return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-2 mb-2" >
                       
-                      
+                      <button className="btn btn-purple"  onClick={()=>{
+                        download(thumbNailKey,'thumbnail');
+                      }} >{thumbNailKey} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
+                    
+                    
                     </div>
                   })}
                 </div>
-              </>
-            }
-            
-          </div>
-          <hr className="my-5" />
-        </>
-      }
+                {/* {videoData.length > 0 &&
+                  <>
+                    <p className="font-weight-bold mt-5 h2">Download Videos</p>
+                    <hr />
+                    <div className="row justify-content-around">
+                      {videoData.map(video=>{
+                        return <div key={video} className="col-md-2 mb-2" >
+                            <button className="btn btn-danger"  onClick={()=>{
+                              download(video,'video');
+                            }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                          
+                          
+                        </div>
+                      })}
+                    </div>
+                  </>
+                } */}
+                
+              </div>
+              <hr className="mt-5 mb-0" />
+            </>
+          }
+        </>)}
       </div>
       
       
@@ -158,6 +168,12 @@ function Home() {
         `
           .input {
             outline: none; // disable default focus styles
+            border-color: #683fb3;
+            
+            border-radius: 12px;
+            height: 56px;
+            padding: 17px 20px;
+            font-size: 16px;
           }
           .input:focus {
             box-shadow: 0px 0px 5px rgb(225 121 131 / 50%) !important;
@@ -186,7 +202,7 @@ function Home() {
             height: 30px;
             width: 30px;
             border-radius: 50%;
-            background: #dc3545;
+            background: #9169d4;
             position: absolute;
             top: 0%;
             right: 50%;
@@ -223,6 +239,8 @@ function Home() {
             right: 0;
             z-index: 100;
           }
+          
+         
         `
       }
       </style>

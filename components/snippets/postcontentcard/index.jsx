@@ -4,7 +4,8 @@ function PostCard(props) {
   const { url, alt, bg, heading, para } = props;
   return (
     <>
-      <div className="post-card">
+      
+      <div className="post-card ">
         <div className={`post-image ${bg}`}>
           <img src={url} alt={alt} />
         </div>
@@ -30,11 +31,18 @@ function PostCard(props) {
             -khtml-border-radius: 17px 17px 0 0;
             border-radius: 17px 17px 0 0;
           }
+          .post-image{
+            // background: #ecddcb;
+            padding: 20px;
+          }
+          .post-image svg, .post-image path {
+            fill: #6a3fb6 !important;
+          }
           .post-image img {
             width: 150px;
           }
           .post-content {
-            padding: 20px;
+            padding: 20px; 
             text-align: left
           }
           
@@ -47,7 +55,7 @@ function PostCard(props) {
           .post-content p {
             line-height: 18px;
             margin-bottom: 0;
-            height: 160px;
+            min-height: 160px;
           }
         
         `}
