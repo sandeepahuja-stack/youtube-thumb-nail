@@ -9,11 +9,12 @@ export default function MainLayout({ children }) {
         <title>My page title</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-     <section className="py-3">
-        
-        <h1 className="text-center  h2 "><Link href="/"><a className="text-danger text-decoration-none">Youtube Downloader</a></Link></h1>
-        <p className="text-center m-0 text-dark font-weight-semi">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>
-        <hr/>
+     <section className="pb-3">
+        <div className=" py-3" style={{background:'#2c2c2c'}}>
+          <h1 className="text-center m-0  "><Link href="/"><a className="text-danger text-decoration-none">Youtube Downloader</a></Link></h1>
+          <p className="text-center   font-weight-semi text-white">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>
+          <hr className="m-0 bg-white"/>
+        </div>
         {children}
       </section>
       <footer className="bg-dark p-5">
