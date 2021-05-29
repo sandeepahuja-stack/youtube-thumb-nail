@@ -136,7 +136,7 @@ function Home() {
                     return <div key={video} className="col-md-2 mb-2" >
                         <button className="btn btn-danger"  onClick={()=>{
                           download(video,'video');
-                        }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mr-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                        }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                       
                       
                     </div>
