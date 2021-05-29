@@ -8,6 +8,7 @@ const API_URL = process.env.API_URL;
 function Home() {
   const [value, setValue] = useState('');
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState({});
+  const [videoDataThumbNailsKeys, updateVideoDataThumbNailsKeys] = useState([]);
   const [loader, isLoading] = useState(false);
 
   // const [videoDataWithAudio, updateVideoDataWithAudio] = useState([]);
@@ -19,23 +20,27 @@ function Home() {
     setValue(e.target.value);
   }
   function convertVideo() {
-    isLoading(true);
-    fetch(`${API_URL}check/streams/`, {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-       url: value
+    if(value !='') {
+      isLoading(true);
+      fetch(`${API_URL}check/streams/`, {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+        url: value
+        })
       })
-     })
-    .then(res => res.json())
-    .then(json => {
-      // const videoAry = json['resolution']['mp4'];
-      // updateVideoData(videoAry);
-      // updateVideoDataWithAudio(json['resolution']['mp4Audio']);
-      updateVideoTitle(json['title']);
-      updateVideoDataThumbNails(json['thumnailUrl']);
-      isLoading(false);  
-    });
+      .then(res => res.json())
+      .then(json => {
+        // const videoAry = json['resolution']['mp4'];
+        // updateVideoData(videoAry);
+        // updateVideoDataWithAudio(json['resolution']['mp4Audio']);
+        updateVideoTitle(json['title']);
+        updateVideoDataThumbNails(json['thumnailUrl']);
+        let thumbNails = Object.keys(json['thumnailUrl']);
+        updateVideoDataThumbNailsKeys(thumbNails);
+        isLoading(false);  
+      });
+    }
   }
   
 
@@ -98,7 +103,7 @@ function Home() {
         <div className="px-3  bg-dark-primary py-60" >
             <div className="container py-5 bg-light-primary  hero-container">
                 <h1 className="text-center m-0  "><Link href="/"><a className="text-white text-decoration-none">Youtube Thumbnail Downloader</a></Link></h1>
-                <p className="text-center   font-weight-semi text-white">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>
+                <p className="text-center   font-weight-semi text-white">Download YouTube Video Thumbnails In HD Quality</p>
             
             
               <div className="row justify-content-center ">
@@ -106,7 +111,7 @@ function Home() {
                   <input type="text" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
                 </div>
                 <div>
-                  <button className="btn-purple btn " onClick={convertVideo} target="_blank">Convert</button>
+                  <button className="btn-purple btn " onClick={convertVideo} target="_blank">Get Thumbnail</button>
                 </div>
               </div>
             </div>
@@ -114,23 +119,26 @@ function Home() {
         
         {videoTitle && (<>
           
-          <h2 className="text-center my-5 h1">{videoTitle}</h2>
+          {/* <h2 className="text-center my-5 h1">{videoTitle}</h2> */}
           {Object.keys(videoDataThumbNails).length > 0 && 
             <>
               
               {/* <hr/> */}
-              <div className="container text-center  mb-5">
+              <div className="container text-center  my-5">
                 {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
-                <img src={videoDataThumbNails[Object.keys(videoDataThumbNails)[0]]} className="mb-5" style={{width:'320px', height: '180px'}}/>
+                {/* {console.log(videoDataThumbNails, videoDataThumbNailsKeys[videoDataThumbNailsKeys.length-1])} */}
+                
                 {/* <p className="font-weight-bold mt-5 h2">Download Thumbnails</p> */}
                 {/* <hr /> */}
                 <div className="row justify-content-around">
-                  {Object.keys(videoDataThumbNails).map(thumbNailKey=>{
-                    return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-2 mb-2" >
-                      
-                      <button className="btn btn-purple"  onClick={()=>{
-                        download(thumbNailKey,'thumbnail');
-                      }} >{thumbNailKey} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
+                  {videoDataThumbNailsKeys.map(thumbNailKey=>{
+                    return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-6 mb-5 text-center"  >
+                      <img src={videoDataThumbNails[thumbNailKey]} className="mb-3 " style={{width:'320px', height: '180px'}}/>
+                      <div >
+                        <button className="btn btn-purple"  onClick={()=>{
+                          download(thumbNailKey,'thumbnail');
+                        }} >{thumbNailKey} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
+                      </div>
                     
                     
                     </div>
@@ -163,7 +171,7 @@ function Home() {
       
       
       <PostContent />
-      <YTDownloadContent />
+      {/* <YTDownloadContent /> */}
       <style jsx>{
         `
           .input {
