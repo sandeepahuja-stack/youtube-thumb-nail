@@ -45,7 +45,7 @@ export default function MyApp({ Component, pageProps }) {
             border: 1px solid #683fb3;
             // color: white;
             border-radius: 12px;
-            padding: 15px 0;
+            padding: 15px;
             display: inline-block;
             border: none;
             color: #fdfdfe;
@@ -53,7 +53,7 @@ export default function MyApp({ Component, pageProps }) {
             font-weight: 700;
             cursor: pointer;
             transition: all .3s;
-            width: 180px;
+            min-width: 180px;
           }
           .btn-purple:hover{
             color: #683fb3;

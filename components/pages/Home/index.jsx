@@ -1,72 +1,67 @@
 import { useState } from "react";
 import Link from "next/link";
 import PostContent from "./snippets/PostContent";
-import YTDownloadContent from "./snippets/YTDownloadContent";
+// import YTDownloadContent from "./snippets/YTDownloadContent";
 const API_URL = process.env.API_URL;
 
 
 function Home() {
   const [value, setValue] = useState('');
-  const [videoDataThumbNails, updateVideoDataThumbNails] = useState({});
-  const [videoDataThumbNailsKeys, updateVideoDataThumbNailsKeys] = useState([]);
+  const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
+  const [isError, updateIsError] = useState(false);
   const [loader, isLoading] = useState(false);
 
-  // const [videoDataWithAudio, updateVideoDataWithAudio] = useState([]);
-  // const [videoData, updateVideoData] = useState([]);
-  const [videoTitle, updateVideoTitle] = useState('');
-  // const [downloadLink, updateDownLoadLink] = useState('');
+  
 
   function handleChange(e) {
     setValue(e.target.value);
+    convertImage(e.target.value);
   }
-  function convertVideo() {
-    if(value !='') {
-      isLoading(true);
-      fetch(`${API_URL}check/streams/`, {
-        method: 'post',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-        url: value
-        })
-      })
-      .then(res => res.json())
-      .then(json => {
-        // const videoAry = json['resolution']['mp4'];
-        // updateVideoData(videoAry);
-        // updateVideoDataWithAudio(json['resolution']['mp4Audio']);
-        updateVideoTitle(json['title']);
-        updateVideoDataThumbNails(json['thumnailUrl']);
-        let thumbNails = Object.keys(json['thumnailUrl']);
-        updateVideoDataThumbNailsKeys(thumbNails);
-        isLoading(false);  
-      });
+  
+  function convertImage(value){
+    let id = getYoutubeId(value);
+    if (id) {
+      updateIsError(false);
+      let thumbNailAry =  [
+        {
+          size: 'HD Image (1280x720)',
+          url: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+        },
+        {
+          size: 'SD Image (640x480)',
+          url: `https://img.youtube.com/vi/${id}/sddefault.jpg`
+        },
+        {
+          size: 'Normal Image (480x360)',
+          url: `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+        },
+        {
+          size: 'Normal Image (320x180)',
+          url: `https://img.youtube.com/vi/${id}/mqdefault.jpg`
+        },
+        {
+          size: 'Small Image (120x90)',
+          url: `https://img.youtube.com/vi/${id}/default.jpg`
+        }
+
+
+
+      ]
+      updateVideoDataThumbNails(thumbNailAry);
+    } else {
+      updateIsError(true);
+      updateVideoDataThumbNails([]);
     }
   }
   
 
-  function download(pixel,type) {
+  function downloadImage(url) {
     isLoading(true);
-    
-    fetch(`${API_URL}download/${type}/`, {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-       url: value,
-       pixel,
-       type
-      })
-     })
+    fetch(`${API_URL}downloadImage?url=${url}&filename=image`)
     .then(res => res.json())
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
-      // console.log(json['downloadLink']);
-      // let link = 'http://35.154.100.89:8000/static/thumbnails/Mere-Haath-Mein-%7C-Fanaa--%7C-Sonu-Nigam-Cover%7C--Day-41-%7C-100-Day-Piano-Challenge-%7C-Manoj-Abraham.jpg';
-      // updateDownLoadLink(link);
-      downloadLinkBtn.setAttribute('href',`${json['downloadLink']}`);
-      // downloadLinkBtn.setAttribute('href',link);
-       downloadLinkBtn.setAttribute('target',`_blank`);
-      // passHref={true}
-	    // console.log(json['downloadLink']);
+      downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
       downloadLinkBtn.setAttribute('download','image');
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
@@ -74,11 +69,15 @@ function Home() {
       isLoading(false);
     });
   }
+  function getYoutubeId(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[8].length==11)? match[8] : false;
+  }
   
   return (
     <>
-    {/* <Link href={`http://`+downloadLink} passHref={true} > <a>here download</a></Link> */}
-    {/* <Link href={`${downloadLink}`} passHref={false}><a className="text-danger text-decoration-none">Youtube Downloader</a></Link> */}
+    
     { loader &&
       <>
         <div className="loader">
@@ -111,16 +110,15 @@ function Home() {
                   <input type="text" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
                 </div>
                 <div>
-                  <button className="btn-purple btn " onClick={convertVideo} target="_blank">Get Thumbnail</button>
+                  <button className="btn-purple btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
                 </div>
               </div>
+              {isError && <p className="text-danger">Url entered is wrong</p>}
             </div>
         </div>
         
-        {videoTitle && (<>
-          
-          {/* <h2 className="text-center my-5 h1">{videoTitle}</h2> */}
-          {Object.keys(videoDataThumbNails).length > 0 && 
+        
+          {videoDataThumbNails.length > 0 && 
             <>
               
               {/* <hr/> */}
@@ -131,13 +129,11 @@ function Home() {
                 {/* <p className="font-weight-bold mt-5 h2">Download Thumbnails</p> */}
                 {/* <hr /> */}
                 <div className="row justify-content-around">
-                  {videoDataThumbNailsKeys.map(thumbNailKey=>{
-                    return <div key={videoDataThumbNails[thumbNailKey]} className="col-md-6 mb-5 text-center"  >
-                      <img src={videoDataThumbNails[thumbNailKey]} className="mb-3 " style={{width:'320px', height: '180px'}}/>
+                  {videoDataThumbNails.map(thumbNailObj=>{
+                    return <div key={thumbNailObj['url']+value} className="col-md-6 mb-5 text-center"  >
+                      <img src={thumbNailObj['url']} className="mb-3 " style={{width:'320px', height: '180px'}}/>
                       <div >
-                        <button className="btn btn-purple"  onClick={()=>{
-                          download(thumbNailKey,'thumbnail');
-                        }} >{thumbNailKey} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
+                        <button className="btn btn-purple" onClick={()=>{downloadImage(thumbNailObj['url'])}} download  target="_blank">{thumbNailObj['size']} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
                       </div>
                     
                     
@@ -166,7 +162,7 @@ function Home() {
               <hr className="mt-5 mb-0" />
             </>
           }
-        </>)}
+        
       </div>
       
       
