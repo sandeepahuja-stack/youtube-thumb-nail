@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import PostContent from "./snippets/PostContent";
-// import YTDownloadContent from "./snippets/YTDownloadContent";
+import YTDownloadContent from "./snippets/YTDownloadContent";
+import FAQ from "./snippets/Faq";
 const API_URL = process.env.API_URL;
 
 
@@ -43,15 +44,17 @@ function Home() {
           size: 'Small Image (120x90)',
           url: `https://img.youtube.com/vi/${id}/default.jpg`
         }
-
-
-
       ]
       updateVideoDataThumbNails(thumbNailAry);
     } else {
-      updateIsError(true);
+      if(value != ''){
+        updateIsError(true);
+      } else {
+        updateIsError(false);
+      }
       updateVideoDataThumbNails([]);
     }
+
   }
   
 
@@ -97,26 +100,27 @@ function Home() {
         <div className="loader-background" />
       </>
       }
-
+    <hr className="m-0"/>
       <div >
-        <div className="px-3  bg-dark-primary py-60" >
-            <div className="container py-5 bg-light-primary  hero-container">
-                <h1 className="text-center m-0  "><Link href="/"><a className="text-white text-decoration-none">Youtube Thumbnail Downloader</a></Link></h1>
-                <p className="text-center   font-weight-semi text-white">Download YouTube Video Thumbnails In HD Quality</p>
+      {/* bg-dark-primary */}
+        <div className="px-3   py-5" >
+            <div className="container py-2 bg-light-primary  hero-container text-dark">
+                <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">The Best YouTube Thumbnail Downloader</a></Link></h1>
+                <p className="text-center   font-weight-semi text-dark">Thumbnail Downloader helps you to save YouTube thumbnail to your device.</p>
             
             
               <div className="row justify-content-center ">
                 <div className="col-md-8 mb-2">
-                  <input type="text" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
+                  <input type="search" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
                 </div>
                 <div>
-                  <button className="btn-purple btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
+                  <button className="btn-main  btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
                 </div>
               </div>
-              {isError && <p className="text-danger">Url entered is wrong</p>}
+              {isError && <p className="text-danger text-center m-0">Url entered is wrong</p>}
             </div>
         </div>
-        
+        <hr className="m-0"/>
         
           {videoDataThumbNails.length > 0 && 
             <>
@@ -133,10 +137,8 @@ function Home() {
                     return <div key={thumbNailObj['url']+value} className="col-md-6 mb-5 text-center"  >
                       <img src={thumbNailObj['url']} className="mb-3 " style={{width:'320px', height: '180px'}}/>
                       <div >
-                        <button className="btn btn-purple" onClick={()=>{downloadImage(thumbNailObj['url'])}} download  target="_blank">{thumbNailObj['size']} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
+                        <button className="btn btn-main " onClick={()=>{downloadImage(thumbNailObj['url'])}} download  target="_blank">{thumbNailObj['size']} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
                       </div>
-                    
-                    
                     </div>
                   })}
                 </div>
@@ -147,7 +149,7 @@ function Home() {
                     <div className="row justify-content-around">
                       {videoData.map(video=>{
                         return <div key={video} className="col-md-2 mb-2" >
-                            <button className="btn btn-danger"  onClick={()=>{
+                            <button className="btn "  onClick={()=>{
                               download(video,'video');
                             }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                           
@@ -167,12 +169,14 @@ function Home() {
       
       
       <PostContent />
-      {/* <YTDownloadContent /> */}
+      <YTDownloadContent />
+      <FAQ />
+      
       <style jsx>{
         `
           .input {
             outline: none; // disable default focus styles
-            border-color: #683fb3;
+            border-color: #606569;
             
             border-radius: 12px;
             height: 56px;
@@ -180,7 +184,7 @@ function Home() {
             font-size: 16px;
           }
           .input:focus {
-            box-shadow: 0px 0px 5px rgb(225 121 131 / 50%) !important;
+            box-shadow: none;
           }
 
           .loader {
@@ -206,7 +210,7 @@ function Home() {
             height: 30px;
             width: 30px;
             border-radius: 50%;
-            background: #9169d4;
+            background: #3cb371;
             position: absolute;
             top: 0%;
             right: 50%;
@@ -244,7 +248,6 @@ function Home() {
             z-index: 100;
           }
           
-         
         `
       }
       </style>

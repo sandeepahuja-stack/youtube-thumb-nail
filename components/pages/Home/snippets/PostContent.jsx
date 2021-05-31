@@ -4,48 +4,48 @@ import PostCard from "../../../snippets/postcontentcard";
 function PostContent() {
   const postContentAry1 = [
     {
-      bg: 'bg1',
-      heading: 'Fast and easy to use',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'Multiple Size',
+      para: 'Download YouTube thumbnail image in Full HD, SD or Low Resolution. Instantly download YouTube thumbnail to your device.',
       url: '/static/svg/fast.svg',
-      alt: 'Fast and easy to use',
+      alt: 'Multiple Size',
     },
     {
-      bg: 'bg2',
-      heading: 'Without limitation',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'Easy to Use',
+      para: 'No Signup or Login required. Just enter YouTube URL and download the image directly. No need to open the image in the browser to save it.',
       url: '/static/svg/loop.svg',
-      alt: 'Without limitation',
+      alt: 'Easy to Use',
     },
     {
-      bg: 'bg3',
-      heading: '100% Safe and Clean',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'Instant Download',
+      para: 'Download thumbnail faster than any other website. Just hit the download button, and the image saves in your device instantly.',
       url: '/static/svg/shield.svg',
-      alt: '100% Safe and Clean',
+      alt: 'Instant Download',
     },
   ];
   const postContentAry2 = [
     {
-      bg: 'bg4',
-      heading: 'Full platforms supported',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'Secure Download',
+      para: 'Our website is fully secure by HTTPS protocol. Download YouTube thumbnail without any security or safety risk. ',
       url: '/static/svg/ux-design.svg',
-      alt: 'Full platforms supported',
+      alt: 'Secure Download',
     },
     {
-      bg: 'bg5',
-      heading: 'Full file format supported',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'No Limitations',
+      para: 'Download an unlimited number of YouTube thumbnails to your device. No premium plan or no limits at all.',
       url: '/static/svg/instructions.svg',
-      alt: 'Full file format supported',
+      alt: 'No Limitations',
     },
     {
-      bg: 'bg6',
-      heading: 'Cloud support',
-      para: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      bg: 'bg',
+      heading: 'Free to Use',
+      para: 'Genuinely unlimited and free to use platform. No freemium or premium plans. Just download the thumbnail image you wish to.',
       url: '/static/svg/computing.svg',
-      alt: 'Cloud support',
+      alt: 'Free to Use',
     },
   ];
   
@@ -54,8 +54,8 @@ function PostContent() {
       <div className=" py-5">
         <div className="container">
           <div className="pb-3 ">
-            <h2 className="text-center h1 ">The Best Youtube Thumbnail Downloader</h2>
-            <p className="text-dark  text-center" >Text of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has ext of the printing and typesetting industry. Lorem Ipsum has </p>
+            <h2 className="text-center h2 ">The Best Youtube Thumbnail Downloader</h2>
+            <p className="text-dark  text-center" >Thumbnail Downloader helps you to save YouTube thumbnail to your device. You can download different resolution images with a single click.</p>
           </div>
           <div className="row justify-content-around mb-5 px-2">
           {

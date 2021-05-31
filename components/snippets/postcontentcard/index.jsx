@@ -55,7 +55,7 @@ function PostCard(props) {
           .post-content p {
             line-height: 18px;
             margin-bottom: 0;
-            min-height: 160px;
+            min-height: 100px;
           }
         
         `}
