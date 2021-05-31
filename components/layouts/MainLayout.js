@@ -15,7 +15,7 @@ export default function MainLayout({ children }) {
       </Head>
       <nav className="bg-main-primary w-100 d-flex justify-content-between">
         <Link href="/"><a className="text-white text-decoration-none d-inline p-3 font-weight-semi ">Youtube Thumbnail Downloader</a></Link>
-        <ul className="d-flex list-inline justify-content-end m-0 p-3">
+        <ul className="list-inline justify-content-end m-0 p-3 main-menu">
           <li>
             <a className="text-white text-decoration-none mr-2 p-3 font-weight-semi" href="/">Home</a>
           </li>

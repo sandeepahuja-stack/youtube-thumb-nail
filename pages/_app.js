@@ -92,8 +92,15 @@ export default function MyApp({ Component, pageProps }) {
           .hero-container{
             border-radius: 17px 0;
           }
-
+          
+            .main-menu {
+              display: flex;
+            }
+          
           @media only screen and (max-width: 600px) {
+            .main-menu {
+              display: none !important;
+            }
             h1 {
               font-size: 24px;
             }
