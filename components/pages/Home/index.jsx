@@ -65,7 +65,7 @@ function Home() {
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
       downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
-      downloadLinkBtn.setAttribute('download','image');
+      downloadLinkBtn.setAttribute('download',`image${url}`);
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
       downloadLinkBtn.remove();
