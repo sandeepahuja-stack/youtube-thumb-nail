@@ -13,14 +13,17 @@ export default function MainLayout({ children }) {
         <title>My page title</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <nav className="bg-light-primary w-100 d-flex justify-content-between">
-        <Link href="/"><a className="text-dark text-decoration-none d-inline p-3 font-weight-semi ">Youtube Thumbnail Downloader</a></Link>
+      <nav className="bg-main-primary w-100 d-flex justify-content-between">
+        <Link href="/"><a className="text-white text-decoration-none d-inline p-3 font-weight-semi ">Youtube Thumbnail Downloader</a></Link>
         <ul className="d-flex list-inline justify-content-end m-0 p-3">
           <li>
-            <a className="text-dark text-decoration-none mr-2 p-3 font-weight-semi" href="/about">About</a>
+            <a className="text-white text-decoration-none mr-2 p-3 font-weight-semi" href="/">Home</a>
           </li>
           <li>
-            <a className="text-dark text-decoration-none mr-5 p-3 font-weight-semi" href="/blog">Blog</a>
+            <a className="text-white text-decoration-none mr-2 p-3 font-weight-semi" href="/blog">Blog</a>
+          </li>
+          <li>
+            <a className="text-white text-decoration-none mr-5 p-3 font-weight-semi" href="/contact">Contact Us</a>
           </li>
         </ul>
       </nav>

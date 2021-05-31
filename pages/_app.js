@@ -54,7 +54,8 @@ export default function MyApp({ Component, pageProps }) {
             // background: #683fb3;
             // border: 1px solid #683fb3;
             // color: white;
-            background: #606569;
+            // background: #606569;
+            background: #3cb371;
             border-radius: 12px;
             padding: 15px;
             display: inline-block;
@@ -66,17 +67,20 @@ export default function MyApp({ Component, pageProps }) {
             transition: all .3s;
             min-width: 180px;
           }
-          // .btn-main:hover{
-          //   color: #683fb3;
-          //   background: #ccb7f1;
-          // }
+          .btn-main:hover{
+            color: #fcfcfc;
+            // color: #683fb3;
+            // background: #ccb7f1;
+          }
 
           .bg-dark-primary{
             // background: #ed6357;
             // background: #6a3fb6; 
             background: #3cb371;
           }
-
+          .bg-main-primary{
+            background: #3cb371; 
+          }
           .bg-light-primary{
             // background: #f8d2cf;
             // background: #9169d4;
