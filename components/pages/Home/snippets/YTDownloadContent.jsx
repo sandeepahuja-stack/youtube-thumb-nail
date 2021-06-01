@@ -1,6 +1,7 @@
 import React from 'react'
 
 function YTDownloadContent() {
+  const url = 'http://thumbnail-download.me/';
   return (
     // bg-dark-primary
     <>
@@ -15,23 +16,38 @@ function YTDownloadContent() {
           
           <div className=" text-center">
             <p className="text-dark font-weight-bold">Share this site...</p>    
-            <a href="#" className="mx-3">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" className="mx-3">
               <img src="/static/svg/facebook.svg" width="30"/>
             </a>
           
-            <a href="#" className="mx-3">
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} target="_blank" className="mx-3">
               <img src="/static/svg/linkedin.svg" width="30"/>
             </a>
           
-            <a href="#" className="mx-3">
+            <a href={`https://twitter.com/share?url=${url}`} target="_blank" className="mx-3">
               <img src="/static/svg/twitter.svg" width="30"/>
+            </a>
+
+            <a href={`whatsapp://send?text=${url}`} data-action="share/whatsapp/share"  target="_blank" className="mx-3 whatsapp-share-btn">
+              <img src="/static/svg/whatsapp.svg" width="30"/>
             </a>
           </div>
           
         </div>
         {/* <div className="row justify-content-around mb-5"></div> */}
       </div>
-      </>
+      <style>
+        {`
+        .whatsapp-share-btn{
+          display: none;
+        }
+          @media screen and (max-width: 600px) {
+            .whatsapp-share-btn{
+              display: inline;
+            }
+          }`}
+      </style>
+    </>
   )
 }
 

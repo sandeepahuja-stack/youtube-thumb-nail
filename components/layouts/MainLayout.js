@@ -24,7 +24,7 @@ export default function MainLayout({ children }) {
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://youtube.thumbnail-download.me/" />
-        <meta property="og:image" content="/static/svg/logo.svg" />
+        <meta property="og:image" content="https://thumbnail-download.me/static/staticImage/og.jpg" />
         <link rel="icon" href="/static/svg/logo.svg" type="image/gif" sizes="16x16"></link>
         <meta name="description" content="Download YouTube video thumbnail image to your device. Get YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
         <meta property="og:description" content="Download YouTube video thumbnail image to your device. YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
