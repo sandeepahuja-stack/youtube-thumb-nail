@@ -62,7 +62,12 @@ export default function MyApp({ Component, pageProps }) {
             .main-menu {
               display: flex;
             }
-          
+            .bg-transparent-modal{
+              background: rgba(0,0,0,.3);
+            }
+            .sidebar-btn{
+              display: none; 
+            }
           @media only screen and (max-width: 600px) {
             .main-menu {
               display: none !important;
@@ -73,10 +78,11 @@ export default function MyApp({ Component, pageProps }) {
             h2, h3{
               font-size: 20px !important;
             }
+            .sidebar-btn{
+              display: inline; 
+            }
           }
-          .bg-transparent-modal{
-            background: rgba(0,0,0,.3);
-          }
+          
           `}
       </style>
     </Layout>

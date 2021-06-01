@@ -14,19 +14,18 @@ function YTDownloadContent() {
           </p>
           
           <div className=" text-center">
-              <p className="text-dark font-weight-bold">Share this site...</p>    
-              <a href="#" className="mx-3">
-              <img src="/static/svg/facebook.svg" alt="Youtube to MP4" width="30"/>
-              </a>
-            
+            <p className="text-dark font-weight-bold">Share this site...</p>    
             <a href="#" className="mx-3">
-              <img src="/static/svg/linkedin.svg" alt="Youtube to MP4" width="30"/>
-              </a>
-            
+              <img src="/static/svg/facebook.svg" width="30"/>
+            </a>
+          
             <a href="#" className="mx-3">
-              <img src="/static/svg/twitter.svg" alt="Youtube to MP4" width="30"/>
-              </a>
-            
+              <img src="/static/svg/linkedin.svg" width="30"/>
+            </a>
+          
+            <a href="#" className="mx-3">
+              <img src="/static/svg/twitter.svg" width="30"/>
+            </a>
           </div>
           
         </div>
