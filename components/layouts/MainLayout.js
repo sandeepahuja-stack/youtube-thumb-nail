@@ -12,11 +12,11 @@ export default function MainLayout({ children }) {
   return (
     <>
     <Head>
-        <title>My page title</title>
+        
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <title>YouTube Thumbnail Download Online - HD Quality</title>
         <meta property="og:title" content="YouTube Thumbnail Download Online - HD Quality" />
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="author" content="YouTube Thumbnail Download" />
