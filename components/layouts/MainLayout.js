@@ -12,6 +12,19 @@ export default function MainLayout({ children }) {
     <Head>
         <title>My page title</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>YouTube Thumbnail Download Online - HD Quality</title>
+        <meta property="og:title" content="YouTube Thumbnail Download Online - HD Quality" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="author" content="YouTube Thumbnail Download" />
+        <meta property="og:site_name" content="YouTube Thumbnail Download" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://youtube.thumbnail-download.me/" />
+        <meta property="og:image" content="/og.jpg" />
+        <meta name="description" content="Download YouTube video thumbnail image to your device. Get YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
+        <meta property="og:description" content="Download YouTube video thumbnail image to your device. YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
       </Head>
       <nav className="bg-main-primary w-100 d-flex justify-content-between">
         <Link href="/"><a className="text-white text-decoration-none d-inline p-3 font-weight-semi ">Youtube Thumbnail Downloader</a></Link>

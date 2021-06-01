@@ -12,18 +12,19 @@ function YTDownloadContent() {
           <p className="text-dark  text-center ">
             Consider this website as the best and easy to use YouTube thumbnail downloader. Just enter the YouTube video link and download the thumbnail to your device. The highlighted feature of our website is fast, secure, 1-click download. Whether your internet connection is slow, our website helps you download the image as fast as possible. Consider sharing our website via the below sharing buttons.
           </p>
+          
           <div className=" text-center">
-            
+              <p className="text-dark font-weight-bold">Share this site...</p>    
               <a href="#" className="mx-3">
-              <img src="/static/svg/facebook.svg" alt="Youtube to MP4" width="50"/>
+              <img src="/static/svg/facebook.svg" alt="Youtube to MP4" width="30"/>
               </a>
             
             <a href="#" className="mx-3">
-              <img src="/static/svg/linkedin.svg" alt="Youtube to MP4" width="50"/>
+              <img src="/static/svg/linkedin.svg" alt="Youtube to MP4" width="30"/>
               </a>
             
             <a href="#" className="mx-3">
-              <img src="/static/svg/twitter.svg" alt="Youtube to MP4" width="50"/>
+              <img src="/static/svg/twitter.svg" alt="Youtube to MP4" width="30"/>
               </a>
             
           </div>

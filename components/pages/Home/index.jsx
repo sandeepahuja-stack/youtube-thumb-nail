@@ -3,6 +3,8 @@ import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 import FAQ from "./snippets/Faq";
+import YoutubeEmbed from "../../snippets/YoutubeEmbeded/YoutubeEmbed";
+import ModalHoc from "../../layouts/ModalHoc";
 const API_URL = process.env.API_URL;
 
 
@@ -11,7 +13,7 @@ function Home() {
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
   const [isError, updateIsError] = useState(false);
   const [loader, isLoading] = useState(false);
-
+  const [isOpen, updateIsOpen] = useState(false);
   
 
   function handleChange(e) {
@@ -100,6 +102,10 @@ function Home() {
         <div className="loader-background" />
       </>
       }
+
+
+    <YoutubeEmbed embedId="Tje77ziz8HU" isOpen={isOpen} updateIsOpen={updateIsOpen} header="How to Download?" />
+      
     <hr className="m-0"/>
       <div >
       {/* bg-dark-primary */}
@@ -112,12 +118,17 @@ function Home() {
               <div className="row justify-content-center ">
                 <div className="col-md-8 mb-2">
                   <input type="search" className="form-control input" placeholder="Paste your Youtube link here" onChange={handleChange} />
+                  
                 </div>
                 <div>
                   <button className="btn-main  btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
                 </div>
               </div>
+              <p className=" text-center mt-2 mb-0"><a href="javascript:void(0)" className="text-primary pointer font-weight-bold" onClick={()=>{
+                updateIsOpen(!isOpen)
+              }}>How to Download ?</a></p>
               {isError && <p className="text-danger text-center m-0">Url entered is wrong</p>}
+              
             </div>
         </div>
         <hr className="m-0"/>

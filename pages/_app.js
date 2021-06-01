@@ -15,41 +15,7 @@ export default function MyApp({ Component, pageProps }) {
           // background: #3cb371;
           background: #f6f6f6;
         }
-          // .bg1 {
-          //   // background: #d2e3fc;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
-
-          // .bg2 {
-          //   // background: #fad2cf;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
-
-          // .bg3 {
-          //   // background: #ceead6;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
-
-          // .bg4 {
-          //   // background: #feefc3;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
-
-          // .bg5 {
-          //   // background: #ffd5ec;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
-
-          // .bg6 {
-          //   // background: #d1f4ff;
-          //   // background: #9169d4;
-          //   background: #bd2130;
-          // }
+          
           .btn-main{
             // background: #683fb3;
             // border: 1px solid #683fb3;
@@ -107,6 +73,9 @@ export default function MyApp({ Component, pageProps }) {
             h2, h3{
               font-size: 20px !important;
             }
+          }
+          .bg-transparent-modal{
+            background: rgba(0,0,0,.3);
           }
           `}
       </style>

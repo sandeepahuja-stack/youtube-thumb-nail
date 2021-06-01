@@ -54,8 +54,8 @@ function PostContent() {
       <div className=" py-5">
         <div className="container">
           <div className="pb-3 ">
-            <h2 className="text-center h2 ">The Best Youtube Thumbnail Downloader</h2>
-            <p className="text-dark  text-center" >Thumbnail Downloader helps you to save YouTube thumbnail to your device. You can download different resolution images with a single click.</p>
+            <h2 className="text-center h2 ">YouTube Thumbnail Downloader Features</h2>
+            <p className="text-dark  text-center" >Top features of this website</p>
           </div>
           <div className="row justify-content-around mb-5 px-2">
           {
