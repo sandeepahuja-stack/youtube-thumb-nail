@@ -9,8 +9,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
-app.get("/",function(request,response){
-	response.sendFile(__dirname + "public/index.html");
+app.get("/",function(request,res){
+//	response.sendFile(__dirname + "public/index.html");
+		 res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
 });
 
 app.get("/videoInfo",async function(request,response){
