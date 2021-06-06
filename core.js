@@ -15,13 +15,14 @@ app.get("/",function(request,res){
   res.end('Hello World\n');
 });
 
-app.get("/videoInfo",async function(request,response){
+app.get("/api/videoInfo",async function(request,response){
 	const videoURL = request.query.videoURL;
+  
 	const info = await ytdl.getInfo(videoURL);
 	response.status(200).json(info);
 });
 
-app.get("/download",function(request,response){
+app.get("/api/download",function(request,response){
 	const videoURL = request.query.videoURL;
 	const itag = request.query.itag;
 	response.header("Content-Disposition",'attachment;\ filename="video.mp4"');

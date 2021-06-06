@@ -4,75 +4,87 @@ import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 import FAQ from "./snippets/Faq";
 import YoutubeEmbed from "../../snippets/YoutubeEmbeded/YoutubeEmbed";
-import ModalHoc from "../../layouts/ModalHoc";
+
 const API_URL = process.env.API_URL;
 
 
 function Home() {
   const [value, setValue] = useState('');
-  const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
+  const [videoData, updateVideoData] = useState([]);
   const [isError, updateIsError] = useState(false);
   const [loader, isLoading] = useState(false);
   const [isOpen, updateIsOpen] = useState(false);
-  
+  const [title, updateTitle] = useState('');
+  const [thumnail, updateThumbnail] = useState('');
 
   function handleChange(e) {
     setValue(e.target.value);
-    convertImage(e.target.value);
+    getVideo(e.target.value);
   }
   
-  function convertImage(value){
+  function getVideo(value){
     let id = getYoutubeId(value);
     if (id) {
       updateIsError(false);
-      let thumbNailAry =  [
-        {
-          size: 'HD Image (1280x720)',
-          url: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
-        },
-        {
-          size: 'SD Image (640x480)',
-          url: `https://img.youtube.com/vi/${id}/sddefault.jpg`
-        },
-        {
-          size: 'Normal Image (480x360)',
-          url: `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-        },
-        {
-          size: 'Normal Image (320x180)',
-          url: `https://img.youtube.com/vi/${id}/mqdefault.jpg`
-        },
-        {
-          size: 'Small Image (120x90)',
-          url: `https://img.youtube.com/vi/${id}/default.jpg`
-        }
-      ]
-      updateVideoDataThumbNails(thumbNailAry);
+      isLoading(true);
+      updateThumbnail(`https://img.youtube.com/vi/${id}/sddefault.jpg`);
+      fetch(`${API_URL}api/videoInfo?videoURL=${value}`)
+      .then(res => res.json())
+      .then(json => {
+        
+        isLoading(false);
+        const videoDetails = json['videoDetails'];
+        updateTitle(videoDetails['title']);
+        const videoFormats = json['formats'];
+        let onlyVideos = [];
+        let audioVideos = [];
+        let labels = [];
+        videoFormats.map((video)=>{
+          
+          if (video['hasAudio'] && video['qualityLabel']) {
+            audioVideos.push(video);
+          } else if(!labels.includes(video['qualityLabel'])){
+            onlyVideos.push(video);
+          }
+
+          if (video['qualityLabel'] && !labels.includes(video['qualityLabel'])) {
+            labels.push(video['qualityLabel']);
+          }
+        })
+        // const audioVideos = videoFormats.filter((el)=> el.hasAudio )
+        // const onlyVideos = videoFormats.filter((el)=> !el.hasAudio )
+        
+        // console.log(videoFormats);
+        updateVideoData([...audioVideos,...onlyVideos]);
+      });
+
     } else {
       if(value != ''){
         updateIsError(true);
       } else {
         updateIsError(false);
       }
-      updateVideoDataThumbNails([]);
+      
     }
 
   }
   
 
-  function downloadImage(url) {
+  function download(url, itag) {
     isLoading(true);
-    fetch(`${API_URL}downloadImage?url=${url}&filename=image`)
-    .then(res => res.json())
-    .then(json => {
+    // fetch(`${API_URL}api/download?videoURL=${url}&itag=${itag}`)
+    // .then(res => res.json())
+    // .then(json => {
+      
       let downloadLinkBtn = document.createElement('a');
-      downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
-      downloadLinkBtn.setAttribute('download',`image${url}`);
+      downloadLinkBtn.setAttribute('href',`${API_URL}api/download?videoURL=${url}&itag=${itag}`);
+      downloadLinkBtn.setAttribute('download',`video${value}${itag}`);
+      downloadLinkBtn.setAttribute('target',`_blank`);
       document.body.appendChild(downloadLinkBtn);
       downloadLinkBtn.click();
       downloadLinkBtn.remove();
       isLoading(false);
-    });
+    // });
   }
   function getYoutubeId(url){
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -121,7 +133,7 @@ function Home() {
                   
                 </div>
                 <div>
-                  <button className="btn-main  btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
+                  <button className="btn-main  btn " onClick={()=>{getVideo(value)}} target="_blank">Get Thumbnail</button>
                 </div>
               </div>
               <p className=" text-center mt-2 mb-0"><a href="javascript:void(0)" className="text-primary pointer font-weight-bold" onClick={()=>{
@@ -132,44 +144,37 @@ function Home() {
             </div>
         </div>
         <hr className="m-0"/>
-        
-          {videoDataThumbNails.length > 0 && 
+              {/* <h2>{title}</h2> */}
+          {videoData.length > 0 && 
             <>
               
               {/* <hr/> */}
               <div className="container text-center  my-5">
-                {/* <h2 className="mt-0 mb-5"> Download Thumbnail</h2> */}
-                {/* {console.log(videoDataThumbNails, videoDataThumbNailsKeys[videoDataThumbNailsKeys.length-1])} */}
                 
+                
+                <img src={thumnail} width="100%"/>
+                <h2 className="mt-2 mb-0">{title}</h2>
                 {/* <p className="font-weight-bold mt-5 h2">Download Thumbnails</p> */}
                 {/* <hr /> */}
-                <div className="row justify-content-around">
-                  {videoDataThumbNails.map(thumbNailObj=>{
-                    return <div key={thumbNailObj['url']+value} className="col-md-6 mb-5 text-center"  >
-                      <img src={thumbNailObj['url']} className="mb-3 " style={{width:'320px', height: '180px'}}/>
-                      <div >
-                        <button className="btn btn-main " onClick={()=>{downloadImage(thumbNailObj['url'])}} download  target="_blank">{thumbNailObj['size']} <img src="/static/svg/download.svg" height="18px" className="ml-1" /></button>
-                      </div>
-                    </div>
-                  })}
-                </div>
-                {/* {videoData.length > 0 &&
+                
+                {videoData.length > 0 &&
                   <>
-                    <p className="font-weight-bold mt-5 h2">Download Videos</p>
+                    {/* <p className="font-weight-bold mt-5 h2">Download Videos</p> */}
                     <hr />
                     <div className="row justify-content-around">
                       {videoData.map(video=>{
-                        return <div key={video} className="col-md-2 mb-2" >
-                            <button className="btn "  onClick={()=>{
-                              download(video,'video');
-                            }} >{video} {videoDataWithAudio.includes(video) ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
-                          
-                          
-                        </div>
+                        if(video['qualityLabel'])
+                          return <div key={video['url']} className="col-md-2 mb-2" >
+                              <button className="btn btn-main"  onClick={()=>{
+                                download(value,video['itag']);
+                              }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                            
+                            
+                          </div>
                       })}
                     </div>
                   </>
-                } */}
+                }
                 
               </div>
               <hr className="mt-5 mb-0" />
