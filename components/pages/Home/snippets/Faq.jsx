@@ -9,27 +9,28 @@ function FAQ() {
     <div className=" py-5">
       
         <div className="pb-3  container text-dark">
-          <h3 className="text-center h2  mb-5">FAQs Regarding YouTube Thumbnail Downloader</h3>
-          <Accordian isOpen heading="What is thumbnail in YouTube?">
+          <h3 className="text-center h2  mb-5">FAQs for YouTube Shorts Download</h3>
+          <Accordian isOpen heading="Can we download normal YouTube videos using this website?">
             
-            <p className="card-text">Thumbnail is the preview image of any form of content. Every website use Thumbnails to give an idea about the content.</p>
+            <p className="card-text"> Yes, you can download them. The process is the same for downloading normal YouTube videos.</p>
         
           </Accordian>
 
-          <Accordian isOpen heading="What is the size of YouTube thumbnail?">
-            <p className="card-text">YouTube thumbnail resolution is 1280x720 (with minimum width of 640 pixels).</p>
-          </Accordian>
-          <Accordian isOpen heading="How this YouTube Thumbnail Grabber Works?">
-            <p className="card-text">When you enter any YouTube video URL it shows the different size of a thumbnail. Click on the Download button to get it.</p>
-          </Accordian>
-        
-          <Accordian isOpen heading="Do you have any App?">
-            <p className="card-text">Currently, we do not have any app to download YouTube thumbnails. We may release in future.</p>
+          <Accordian isOpen heading="Can I use these videos anywhere?">
+            <p className="card-text">Make sure to get the content creator’s permission before using the video anywhere.</p>
           </Accordian>
 
-          <Accordian isOpen heading="Thumbnails downloaded from this website are copyright-free?">
+          <Accordian isOpen heading="Is YouTube shorts available for Desktop?">
+            <p className="card-text">For now, YouTube shorts only works on mobile devices. In future, they may or may not provide support for desktop.</p>
+          </Accordian>
+        
+          <Accordian isOpen heading=" What is the length of YouTube Shorts Videos?">
+            <p className="card-text">YouTube shorts videos are generally under 60 seconds.</p>
+          </Accordian>
+
+          {/* <Accordian isOpen heading="Thumbnails downloaded from this website are copyright-free?">
           <p className="card-text">All images belong to their respected owners. If you download any image for professional usage, please ask the file owner before using it.</p>
-          </Accordian>
+          </Accordian> */}
 
 
         </div>

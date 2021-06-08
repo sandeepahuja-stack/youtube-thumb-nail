@@ -123,8 +123,8 @@ function Home() {
       {/* bg-dark-primary */}
         <div className="px-3   py-5" >
             <div className="container py-2 bg-light-primary  hero-container text-dark">
-                <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">The Best YouTube Thumbnail Downloader</a></Link></h1>
-                <p className="text-center   font-weight-semi text-dark">Thumbnail Downloader helps you to save YouTube thumbnail to your device.</p>
+                <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">YouTube Shorts Video Download</a></Link></h1>
+                <p className="text-center   font-weight-semi text-dark">Download YouTube shorts videos for free</p>
             
             
               <div className="row justify-content-center ">
@@ -133,7 +133,7 @@ function Home() {
                   
                 </div>
                 <div>
-                  <button className="btn-main  btn " onClick={()=>{getVideo(value)}} target="_blank">Get Thumbnail</button>
+                  <button className="btn-main  btn " onClick={()=>{getVideo(value)}} target="_blank">Get Video</button>
                 </div>
               </div>
               <p className=" text-center mt-2 mb-0"><a href="javascript:void(0)" className="text-primary pointer font-weight-bold" onClick={()=>{

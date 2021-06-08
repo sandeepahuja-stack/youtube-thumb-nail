@@ -1,7 +1,7 @@
 import React from 'react'
 
 function YTDownloadContent() {
-  const url = 'http://thumbnail-download.me/';
+  const url = 'http://youtube.thumbnail-download.me/';
   return (
     // bg-dark-primary
     <>
@@ -9,9 +9,9 @@ function YTDownloadContent() {
     <div className=" py-5">
       
         <div className="pb-3  container text-dark">
-          <h2 className="text-center h2  ">YouTube Thumbnail Downloader</h2>
+          <h2 className="text-center h2  ">YouTube Shorts Video Downloader</h2>
           <p className="text-dark  text-center ">
-            Consider this website as the best and easy to use YouTube thumbnail downloader. Just enter the YouTube video link and download the thumbnail to your device. The highlighted feature of our website is fast, secure, 1-click download. Whether your internet connection is slow, our website helps you download the image as fast as possible. Consider sharing our website via the below sharing buttons.
+            Downloading YouTube shorts video in the official YouTube app is not possible. To download videos from YouTube shorts, you have to use our website. You can bookmark our website to use it again in future. Anyways, If You have YouTube shorts video URL, you can download the video to your device. Our website directly download videos from the YouTube server to your device.
           </p>
           
           <div className=" text-center">
