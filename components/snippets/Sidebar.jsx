@@ -8,7 +8,7 @@ function Sidebar(props) {
       <div className={`menu-sidebar ${isOpen ? 'slide-0' : ''}`}>
         <div className="bg-white main-side-menu">
           
-          <Link href="/"><a className=" text-decoration-none d-flex p-3 font-weight-semi border-bottom align-items-center" style={{color:'#3cb371'}} onClick={()=>updateOpen(false)}><img src="/static/svg/logo.svg"   className="mr-2" style={{borderRadius:'100%', border:'1px solid'}} height="25px" width="25px"/><small>Youtube Thumbnail Downloader</small></a></Link>
+          <Link href="/"><a className=" text-decoration-none d-flex p-3 font-weight-semi border-bottom align-items-center"  onClick={()=>updateOpen(false)}><img src="/static/svg/logo.svg"   className="mr-2" style={{borderRadius:'100%', border:'1px solid'}} height="25px" width="25px"/><small className="text-primary-link">Youtube Shorts Downloader</small></a></Link>
           
           <ul className="m-0 p-0">
             <Link href="/"><a className="py-2  px-4 text-dark d-block border-bottom" onClick={()=>updateOpen(false)}>Home</a></Link>

@@ -5,7 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
-
+  var primarycolor = '#fd0054';
+  var primaryDarkColor = '#a80038';
+  var primaryWhite = '#fbf9fa';
+  var darkColor = '#2b2024';
   return (
     <Layout>
       <Component {...pageProps} />
@@ -13,15 +16,14 @@ export default function MyApp({ Component, pageProps }) {
         {`
         .bg{
           // background: #3cb371;
-          background: #f6f6f6;
+          background: ${primaryWhite};
         }
-          
+       
+          .text-primary-link{
+            color: ${primarycolor};
+          }
           .btn-main{
-            // background: #683fb3;
-            // border: 1px solid #683fb3;
-            // color: white;
-            // background: #606569;
-            background: #3cb371;
+            background: ${primarycolor};
             border-radius: 12px;
             padding: 15px;
             display: inline-block;
@@ -35,22 +37,12 @@ export default function MyApp({ Component, pageProps }) {
           }
           .btn-main:hover{
             color: #fcfcfc;
-            // color: #683fb3;
-            // background: #ccb7f1;
           }
 
-          .bg-dark-primary{
-            // background: #ed6357;
-            // background: #6a3fb6; 
-            background: #3cb371;
-          }
           .bg-main-primary{
-            background: #3cb371; 
+            background: ${primarycolor}; 
           }
-          .bg-light-primary{
-            // background: #f8d2cf;
-            // background: #9169d4;
-          }
+          
           .py-60{
             padding-top: 60px;
             padding-bottom: 60px;

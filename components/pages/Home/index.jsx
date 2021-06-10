@@ -3,7 +3,10 @@ import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 import FAQ from "./snippets/Faq";
+import Shortsinfo from "./snippets/Shortsinfo";
 import YoutubeEmbed from "../../snippets/YoutubeEmbeded/YoutubeEmbed";
+import HowToCreate from "./snippets/HowToCreate";
+import DownloadYoutubeShorts from "./snippets/DownloadYoutubeShorts";
 
 const API_URL = process.env.API_URL;
 
@@ -186,7 +189,11 @@ function Home() {
       
       <PostContent />
       <YTDownloadContent />
+      <Shortsinfo />
+      <HowToCreate />
+      <DownloadYoutubeShorts />
       <FAQ />
+
       
       <style jsx>{
         `

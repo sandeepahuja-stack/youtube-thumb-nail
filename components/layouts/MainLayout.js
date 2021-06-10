@@ -13,25 +13,40 @@ export default function MainLayout({ children }) {
     <>
     <Head>
         
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <title>YouTube Thumbnail Download Online - HD Quality</title>
-        <meta property="og:title" content="YouTube Thumbnail Download Online - HD Quality" />
-        <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
+        
+        <meta charSet="utf-8" />
+        <title>YouTube Shorts Downloader - Download YouTube Shorts for Free</title>
+        <meta property="og:title" content="YouTube Shorts Downloader - Download YouTube Shorts for Free" />
+        
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <meta name="author" content="YouTube Thumbnail Download" />
-        <meta property="og:site_name" content="YouTube Thumbnail Download" />
+        
+        <meta name="author" content="In A Sentence" />
+        <meta property="og:site_name" content="YouTube Shorts Video Download" />
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://youtube.thumbnail-download.me/" />
+        <meta property="og:url" content="http://inasentence.me/" />
+        
+        <meta name="description" content="YouTube shorts video download for free. Best YouTube Shorts video downloader online tool. Save YouTube shorts videos to device." />
+        <meta property="og:description" content="YouTube shorts video download for free. Best YouTube Shorts video downloader online tool. Save YouTube shorts videos to device." />
+
+        
+        
+        <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        
+        
+        
+        
+        
         <meta property="og:image" content="https://thumbnail-download.me/static/staticImage/og.jpg" />
         <link rel="icon" href="/static/svg/logo.svg" type="image/gif" sizes="16x16"></link>
-        <meta name="description" content="Download YouTube video thumbnail image to your device. Get YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
-        <meta property="og:description" content="Download YouTube video thumbnail image to your device. YouTube thumbnail image in HD, SD quality. Download thumbnail of youtube video." />
+        
+        
       </Head>
       <nav className="bg-main-primary w-100 d-flex justify-content-between align-items-center">
         
-        <Link href="/"><a className="text-white text-decoration-none d-flex p-3 font-weight-semi "><img src="/static/svg/logo.svg" className="mr-2" style={{borderRadius:'100%', border:'1px solid'}} height="25px" width="25px"/>Youtube Thumbnail Downloader</a></Link>
+        <Link href="/"><a className="text-white text-decoration-none d-flex p-3 font-weight-semi "><img src="/static/svg/logo.svg" className="mr-2" style={{borderRadius:'100%', border:'1px solid'}} height="25px" width="25px"/>Youtube Shorts Downloader</a></Link>
         <ul className="list-inline justify-content-end m-0 p-3 main-menu">
           <li>
             <a className="text-white text-decoration-none mr-2 p-3 font-weight-semi" href="/">Home</a>
@@ -58,8 +73,9 @@ export default function MainLayout({ children }) {
       </section>
       <footer className="bg-dark p-5">
         <Link href="/"><a className="text-white mr-2">Home</a></Link>
-        <Link href="/about"><a className="text-white mr-2">About Us</a></Link>
-        <Link href="/privacy-policy"><a className="text-white">Privacy Policy</a></Link>
+        <a className="text-white mr-2" href="/contact">Blog</a>
+        
+        <a className="text-white " href="/contact">Contact Us</a>
       </footer>
     </>
   )
