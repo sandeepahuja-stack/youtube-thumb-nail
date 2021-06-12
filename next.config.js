@@ -1,9 +1,7 @@
 module.exports = {
   env: {
-//    API_URL : 'http://35.154.100.89:8000/',
-	// API_URL : 'https://thumbnail-download.me/',
-      API_URL: '/',
-      BASE_URL: 'https://ytshorts.savetube.me',
+      API_URL: 'http://localhost:4000/',
+      BASE_URL: '',
   },
 }
 

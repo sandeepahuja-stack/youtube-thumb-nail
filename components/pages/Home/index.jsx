@@ -76,14 +76,14 @@ function Home() {
   function toggleDropdown(){
     updateIsDropdown(!isDropdownOpen);
   }
-  function download(url, itag) {
+  function download(url, itag, hasAudio) {
     isLoading(true);
     // fetch(`${API_URL}api/download?videoURL=${url}&itag=${itag}`)
     // .then(res => res.json())
     // .then(json => {
-      
+      console.log(title,hasAudio);
       let downloadLinkBtn = document.createElement('a');
-      downloadLinkBtn.setAttribute('href',`${API_URL}api/download?videoURL=${url}&itag=${itag}`);
+      downloadLinkBtn.setAttribute('href',`${API_URL}api/download?videoURL=${url}&itag=${itag}&videoName=${title}&hasAudio=${hasAudio}`);
       downloadLinkBtn.setAttribute('download',`video${value}${itag}`);
       downloadLinkBtn.setAttribute('target',`_blank`);
       document.body.appendChild(downloadLinkBtn);
@@ -169,7 +169,7 @@ function Home() {
                         <hr />
                           <div className="btn-group">
                             <button key={videoData[videoIndex]['url']} className="btn btn-main rounded-0 d-block"  onClick={()=>{
-                              download(value,videoData[videoIndex]['itag']);
+                              download(value, videoData[videoIndex]['itag'], videoData[videoIndex]['hasAudio']);
                             }} >{videoData[videoIndex]['qualityLabel']} {videoData[videoIndex]['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                             <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={toggleDropdown}>
                               <span className="sr-only">Toggle Dropdown</span>
@@ -183,7 +183,7 @@ function Home() {
                                           {/* <div className="dropdown-divider"></div> */}
                                           <button className="btn btn-main rounded-0 border-bottom d-block"  onClick={()=>{
                                             updateVideoIndex(index);
-                                            download(value,video['itag']);
+                                            download(value, video['itag'], video['hasAudio']);
                                             toggleDropdown();
                                           }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                                         </React.Fragment>
