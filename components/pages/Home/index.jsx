@@ -20,7 +20,7 @@ function Home() {
   const [isDropdownOpen, updateIsDropdown] = useState(false);
   const [title, updateTitle] = useState('');
   const [thumnail, updateThumbnail] = useState('');
-
+  const [videoIndex, updateVideoIndex] = useState(0);
   function handleChange(e) {
     setValue(e.target.value);
     getVideo(e.target.value);
@@ -98,6 +98,7 @@ function Home() {
     return (match&&match[8].length==11)? match[8] : false;
   }
   
+  
   return (
     <>
     
@@ -131,7 +132,6 @@ function Home() {
             <div className="container py-2 bg-light-primary  hero-container text-dark">
                 <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">YouTube Shorts Video Download</a></Link></h1>
                 <p className="text-center   font-weight-semi text-dark">Download YouTube shorts videos for free</p>
-            
             
               <div className="row justify-content-center ">
                 <div className="col-md-8 mb-2">
@@ -168,20 +168,21 @@ function Home() {
                         
                         <hr />
                           <div className="btn-group">
-                            <button key={videoData[0]['url']} className="btn btn-main rounded-0 d-block"  onClick={()=>{
-                              download(value,videoData[0]['itag']);
-                            }} >{videoData[0]['qualityLabel']} {videoData[0]['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                            <button key={videoData[videoIndex]['url']} className="btn btn-main rounded-0 d-block"  onClick={()=>{
+                              download(value,videoData[videoIndex]['itag']);
+                            }} >{videoData[videoIndex]['qualityLabel']} {videoData[videoIndex]['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                             <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={toggleDropdown}>
                               <span className="sr-only">Toggle Dropdown</span>
                             </button>
                             <div className={`dropdown-menu p-0 ${isDropdownOpen ? 'd-block' : ''}`}>
                               {videoData.map((video,index)=>{
                                 if(video['qualityLabel'])
-                                  if(index !== 0)
+                                  if(index !== videoIndex)
                                     return (
                                         <React.Fragment  key={video['url']}>
                                           {/* <div className="dropdown-divider"></div> */}
                                           <button className="btn btn-main rounded-0 border-bottom d-block"  onClick={()=>{
+                                            updateVideoIndex(index);
                                             download(value,video['itag']);
                                             toggleDropdown();
                                           }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
