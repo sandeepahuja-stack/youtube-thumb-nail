@@ -12,7 +12,7 @@ function HowToCreate() {
         <div className="row align-items-center">
 
           <div className="col-md-4 text-center">
-            <img src="/static/staticImage/create-a-short.jpg" width="100%"/>
+            <img src="/static/staticImage/create-a-short.jpg" width="100%" alt="create a youtube short"/>
           </div>
 
           <div className="col-md-8">

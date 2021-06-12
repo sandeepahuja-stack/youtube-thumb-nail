@@ -74,7 +74,8 @@ export default function MyApp({ Component, pageProps }) {
               display: inline; 
             }
           }
-          
+
+         
           `}
       </style>
     </Layout>

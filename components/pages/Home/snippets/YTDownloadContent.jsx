@@ -1,7 +1,7 @@
 import React from 'react'
-
+const BASE_URL = process.env.BASE_URL;
 function YTDownloadContent() {
-  const url = 'http://youtube.thumbnail-download.me/';
+  const url = BASE_URL;
   return (
     // bg-dark-primary
     <>

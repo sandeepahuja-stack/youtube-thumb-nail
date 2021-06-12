@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
@@ -10,13 +10,14 @@ import DownloadYoutubeShorts from "./snippets/DownloadYoutubeShorts";
 
 const API_URL = process.env.API_URL;
 
-
+var primaryDarkColor = '#a80038';
 function Home() {
   const [value, setValue] = useState('');
   const [videoData, updateVideoData] = useState([]);
   const [isError, updateIsError] = useState(false);
   const [loader, isLoading] = useState(false);
   const [isOpen, updateIsOpen] = useState(false);
+  const [isDropdownOpen, updateIsDropdown] = useState(false);
   const [title, updateTitle] = useState('');
   const [thumnail, updateThumbnail] = useState('');
 
@@ -58,7 +59,7 @@ function Home() {
         // const onlyVideos = videoFormats.filter((el)=> !el.hasAudio )
         
         // console.log(videoFormats);
-        updateVideoData([...audioVideos,...onlyVideos]);
+        updateVideoData([...audioVideos.reverse(),...onlyVideos]);
       });
 
     } else {
@@ -72,7 +73,9 @@ function Home() {
 
   }
   
-
+  function toggleDropdown(){
+    updateIsDropdown(!isDropdownOpen);
+  }
   function download(url, itag) {
     isLoading(true);
     // fetch(`${API_URL}api/download?videoURL=${url}&itag=${itag}`)
@@ -146,41 +149,56 @@ function Home() {
               
             </div>
         </div>
-        <hr className="m-0"/>
+        {/* <hr className="m-0"/> */}
               {/* <h2>{title}</h2> */}
           {videoData.length > 0 && 
             <>
               
               {/* <hr/> */}
-              <div className="container text-center  my-5">
+              <div className="container   my-2 card card-body">
                 
-                
-                <img src={thumnail} width="100%"/>
-                <h2 className="mt-2 mb-0">{title}</h2>
-                {/* <p className="font-weight-bold mt-5 h2">Download Thumbnails</p> */}
-                {/* <hr /> */}
-                
-                {videoData.length > 0 &&
-                  <>
-                    {/* <p className="font-weight-bold mt-5 h2">Download Videos</p> */}
-                    <hr />
-                    <div className="row justify-content-around">
-                      {videoData.map(video=>{
-                        if(video['qualityLabel'])
-                          return <div key={video['url']} className="col-md-2 mb-2" >
-                              <button className="btn btn-main"  onClick={()=>{
-                                download(value,video['itag']);
-                              }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
-                            
-                            
+                <div className="row">
+                  <div className="col-md-3"><img src={thumnail} width="100%" /></div>
+                  <div className="col-md-9">
+                    <h2 className="mt-2 mb-0 h4">{title}</h2>
+                    
+                    
+                    {videoData.length > 0 &&
+                      <>
+                        
+                        <hr />
+                          <div className="btn-group">
+                            <button key={videoData[0]['url']} className="btn btn-main rounded-0 d-block"  onClick={()=>{
+                              download(value,videoData[0]['itag']);
+                            }} >{videoData[0]['qualityLabel']} {videoData[0]['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                            <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={toggleDropdown}>
+                              <span className="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div className={`dropdown-menu p-0 ${isDropdownOpen ? 'd-block' : ''}`}>
+                              {videoData.map((video,index)=>{
+                                if(video['qualityLabel'])
+                                  if(index !== 0)
+                                    return (
+                                        <React.Fragment  key={video['url']}>
+                                          {/* <div className="dropdown-divider"></div> */}
+                                          <button className="btn btn-main rounded-0 border-bottom d-block"  onClick={()=>{
+                                            download(value,video['itag']);
+                                            toggleDropdown();
+                                          }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
+                                        </React.Fragment>
+                                    );
+                                    
+                              })}
+                        
+                            </div>
                           </div>
-                      })}
-                    </div>
-                  </>
-                }
-                
+                        
+                      </>
+                    }
+                  </div>
+                </div>
               </div>
-              <hr className="mt-5 mb-0" />
+              {/* <hr className="mt-5 mb-0" /> */}
             </>
           }
         
@@ -233,7 +251,7 @@ function Home() {
             height: 30px;
             width: 30px;
             border-radius: 50%;
-            background: #3cb371;
+            background: ${primaryDarkColor};
             position: absolute;
             top: 0%;
             right: 50%;
@@ -270,6 +288,7 @@ function Home() {
             right: 0;
             z-index: 100;
           }
+          
           
         `
       }
