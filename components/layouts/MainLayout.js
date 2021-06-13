@@ -58,8 +58,8 @@ export default function MainLayout({ children }) {
       </section>
       <footer className="bg-dark p-5">
         <Link href="/"><a className="text-white mr-2">Home</a></Link>
-        <Link href="/about"><a className="text-white mr-2">About Us</a></Link>
-        <Link href="/privacy-policy"><a className="text-white">Privacy Policy</a></Link>
+        <a className="text-white mr-2" href="/blog">Blog</a>
+        <a className="text-white" href="/contact">Contact Us</a>
       </footer>
     </>
   )

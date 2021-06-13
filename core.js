@@ -39,7 +39,7 @@ app.get("/downloadImage",async function(request,response){
   await imageDownloader({
     imgs: [{
       uri: url,
-      filename: 'image'
+      filename: filename
     }],
     dest:'./static/images'
   }).then(info=>{

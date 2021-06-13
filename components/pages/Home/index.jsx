@@ -4,7 +4,7 @@ import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
 import FAQ from "./snippets/Faq";
 import YoutubeEmbed from "../../snippets/YoutubeEmbeded/YoutubeEmbed";
-import ModalHoc from "../../layouts/ModalHoc";
+
 const API_URL = process.env.API_URL;
 
 
@@ -62,7 +62,8 @@ function Home() {
 
   function downloadImage(url) {
     isLoading(true);
-    fetch(`${API_URL}downloadImage?url=${url}&filename=image`)
+    let id = getYoutubeId(value);
+    fetch(`${API_URL}downloadImage?url=${url}&filename=${id.replace(/ /g,"_")}`)
     .then(res => res.json())
     .then(json => {
       let downloadLinkBtn = document.createElement('a');
