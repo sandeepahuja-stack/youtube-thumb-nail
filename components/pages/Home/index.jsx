@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import PostContent from "./snippets/PostContent";
 import YTDownloadContent from "./snippets/YTDownloadContent";
@@ -7,11 +7,20 @@ import Shortsinfo from "./snippets/Shortsinfo";
 import YoutubeEmbed from "../../snippets/YoutubeEmbeded/YoutubeEmbed";
 import HowToCreate from "./snippets/HowToCreate";
 import DownloadYoutubeShorts from "./snippets/DownloadYoutubeShorts";
+import { useEffect } from "react";
 
 const API_URL = process.env.API_URL;
 
-var primaryDarkColor = '#a80038';
+function getYoutubeId(url){
+  var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  var match = url.match(regExp);
+  return (match&&match[8].length==11)? match[8] : false;
+}
+
+
+var primaryDarkColor = '#dc3545';
 function Home() {
+  const ref = useRef(null);
   const [value, setValue] = useState('');
   const [videoData, updateVideoData] = useState([]);
   const [isError, updateIsError] = useState(false);
@@ -21,6 +30,7 @@ function Home() {
   const [title, updateTitle] = useState('');
   const [thumnail, updateThumbnail] = useState('');
   const [videoIndex, updateVideoIndex] = useState(0);
+  const [isMore, updateIsMore] = useState(false);
   function handleChange(e) {
     setValue(e.target.value);
     getVideo(e.target.value);
@@ -43,11 +53,16 @@ function Home() {
         let onlyVideos = [];
         let audioVideos = [];
         let labels = [];
+        let flag = 0;
         videoFormats.map((video)=>{
           
           if (video['hasAudio'] && video['qualityLabel']) {
             audioVideos.push(video);
           } else if(!labels.includes(video['qualityLabel'])){
+            if (flag==0){
+              flag = 1;
+              video['moreOption'] = true;
+            }
             onlyVideos.push(video);
           }
 
@@ -76,6 +91,7 @@ function Home() {
   function toggleDropdown(){
     updateIsDropdown(!isDropdownOpen);
   }
+
   function download(url, itag) {
     isLoading(true);
     // fetch(`${API_URL}api/download?videoURL=${url}&itag=${itag}`)
@@ -92,13 +108,24 @@ function Home() {
       isLoading(false);
     // });
   }
-  function getYoutubeId(url){
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    var match = url.match(regExp);
-    return (match&&match[8].length==11)? match[8] : false;
-  }
   
+  useEffect(()=>{
+    let clickOutside = function (e) {
+      // Do nothing if clicking ref's element or descendent elements
+      if (ref.current && !ref.current.contains(e.target)) {
+        updateIsDropdown(false);
+        updateIsMore(false);
+      }
+      return ;
+    }
+    document.addEventListener('click',clickOutside);
+
+    return ()=>{
+      document.removeEventListener('click',clickOutside);
+    }
+  },[])
   
+ 
   return (
     <>
     
@@ -167,7 +194,7 @@ function Home() {
                       <>
                         
                         <hr />
-                          <div className="btn-group">
+                          <div className="btn-group" ref={ref}>
                             <button key={videoData[videoIndex]['url']} className="btn btn-main rounded-0 d-block"  onClick={()=>{
                               download(value,videoData[videoIndex]['itag']);
                             }} >{videoData[videoIndex]['qualityLabel']} {videoData[videoIndex]['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
@@ -177,14 +204,21 @@ function Home() {
                             <div className={`dropdown-menu p-0 ${isDropdownOpen ? 'd-block' : ''}`}>
                               {videoData.map((video,index)=>{
                                 if(video['qualityLabel'])
+
                                   if(index !== videoIndex)
                                     return (
                                         <React.Fragment  key={video['url']}>
+                                          
+                                          {!!(video['moreOption']) && <><button className="btn btn-main rounded-0 border-bottom d-block"  onClick={()=>{
+                                            updateIsMore(!isMore)
+                                          }}>{isMore ? 'Less' : 'More'}<span><img src="/static/svg/down-arrow.svg" height="15px" className={`mx-2 ${isMore ? 'btn-icon-rotate-180' : '' }`} /></span></button>
+                                          </>}
                                           {/* <div className="dropdown-divider"></div> */}
-                                          <button className="btn btn-main rounded-0 border-bottom d-block"  onClick={()=>{
+                                          <button className={`btn btn-main rounded-0 border-bottom ${ video['hasAudio'] ? 'd-block' : isMore ? 'd-block' : 'd-none'}`}  onClick={()=>{
                                             updateVideoIndex(index);
                                             download(value,video['itag']);
                                             toggleDropdown();
+                                            updateIsMore(!isMore);
                                           }} >{video['qualityLabel']} {video['hasAudio'] ? '' : <> <img src="/static/svg/silent.svg" height="15px" className="mx-2" /></>}<img src="/static/svg/download.svg" height="15px" /></button>
                                         </React.Fragment>
                                     );

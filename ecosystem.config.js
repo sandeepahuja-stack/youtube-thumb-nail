@@ -1,14 +1,14 @@
 module.exports = {
   apps: [
     {
-      name: 'youtubeThubnailDownloadFrontend',
+      name: 'youtubeVideoDownloadFrontend',
       script: 'npm run start --port 3001',
       
       env: {
        "NODE_ENV": "production",
       },
     }, {
-      name: 'youtubeThubnailDownloadBackend',
+      name: 'youtubeVideoDownloadBackend',
       script: 'node core.js',
 
       env: {

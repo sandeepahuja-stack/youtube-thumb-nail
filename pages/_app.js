@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
   var primarycolor = '#fd0054';
-  var primaryDarkColor = '#a80038';
+  var primaryDarkColor = '#dc3545';
   var primaryWhite = '#fbf9fa';
   var darkColor = '#2b2024';
   return (
@@ -23,6 +23,8 @@ export default function MyApp({ Component, pageProps }) {
             color: ${primarycolor};
           }
           .btn-main{
+
+            transition: 0.2s linear;
             background: ${primarycolor};
             border-radius: 12px;
             padding: 15px;
@@ -34,9 +36,15 @@ export default function MyApp({ Component, pageProps }) {
             cursor: pointer;
             transition: all .3s;
             min-width: 180px;
+            outline: none;
+          }
+          .btn-main:focus{
+            outline: none;
+            box-shadow: none;
           }
           .btn-main:hover{
             color: #fcfcfc;
+            background: ${primaryDarkColor};
           }
 
           .bg-main-primary{
@@ -74,6 +82,12 @@ export default function MyApp({ Component, pageProps }) {
               display: inline; 
             }
           }
+          // .btn-icon-rotate-180{
+          //   transform: rotateZ(180deg);
+
+          //   transition: 0.2s linear;
+          // }
+
 
          
           `}
