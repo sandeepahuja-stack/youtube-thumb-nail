@@ -75,6 +75,7 @@ function Home() {
        link.setAttribute('download', `${Date.now()}.jpg`); //or any other extension
        document.body.appendChild(link);
        link.click();
+       link.remove();
     });
       isLoading(false);
     // fetch(`${API_URL}downloadImage?url=${url}&filename=${id.replace(/ /g,"_")}`)
