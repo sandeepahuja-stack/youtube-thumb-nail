@@ -150,7 +150,7 @@ function Home() {
       }
 
 
-    <YoutubeEmbed embedId="Tje77ziz8HU" isOpen={isOpen} updateIsOpen={updateIsOpen} header="How to Download?" />
+    {/* <YoutubeEmbed embedId="Tje77ziz8HU" isOpen={isOpen} updateIsOpen={updateIsOpen} header="How to Download?" /> */}
       
     <hr className="m-0"/>
       <div >
@@ -169,9 +169,9 @@ function Home() {
                   <button className="btn-main  btn " onClick={()=>{getVideo(value)}} target="_blank">Get Video</button>
                 </div>
               </div>
-              <p className=" text-center mt-2 mb-0"><a href="javascript:void(0)" className="text-primary pointer font-weight-bold" onClick={()=>{
+              {/* <p className=" text-center mt-2 mb-0"><a href="javascript:void(0)" className="text-primary pointer font-weight-bold" onClick={()=>{
                 updateIsOpen(!isOpen)
-              }}>How to Download ?</a></p>
+              }}>How to Download ?</a></p> */}
               {isError && <p className="text-danger text-center m-0">Url entered is wrong</p>}
               
             </div>
