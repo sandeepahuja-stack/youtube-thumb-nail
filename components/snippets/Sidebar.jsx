@@ -13,7 +13,7 @@ function Sidebar(props) {
           <ul className="m-0 p-0">
             <Link href="/"><a className="py-2  px-4 text-dark d-block border-bottom" onClick={()=>updateOpen(false)}>Home</a></Link>
             <li><a className="py-2  px-4 text-dark d-block border-bottom" href="/blog">Blog</a></li>
-            <li><a className="py-2  px-4 text-dark d-block border-bottom" href="/contact-us"> Contact Us</a></li>
+            <li><a className="py-2  px-4 text-dark d-block border-bottom" href="/blog/contact-us"> Contact Us</a></li>
           </ul>
           
         </div>
