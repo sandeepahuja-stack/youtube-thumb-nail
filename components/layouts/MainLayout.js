@@ -40,7 +40,7 @@ export default function MainLayout({ children }) {
             <a className="text-white text-decoration-none mr-2 p-3 font-weight-semi" href="/blog">Blog</a>
           </li>
           <li>
-            <a className="text-white text-decoration-none mr-5 p-3 font-weight-semi" href="/contact">Contact Us</a>
+            <a className="text-white text-decoration-none mr-5 p-3 font-weight-semi" href="/blog/contact-us">Contact Us</a>
           </li>
         </ul>
         <button className="btn sidebar-btn " onClick={()=>{updateOpen(true)}}><img src="/static/svg/hamburger.svg" height="25" width="25"/></button>
@@ -59,7 +59,7 @@ export default function MainLayout({ children }) {
       <footer className="bg-dark p-5">
         <Link href="/"><a className="text-white mr-2">Home</a></Link>
         <a className="text-white mr-2" href="/blog">Blog</a>
-        <a className="text-white" href="/contact">Contact Us</a>
+        <a className="text-white" href="/blog/contact-us">Contact Us</a>
       </footer>
     </>
   )
