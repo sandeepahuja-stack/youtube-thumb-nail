@@ -62,32 +62,32 @@ function Home() {
   
 
   function downloadImage(url) {
-    isLoading(true);
+    // isLoading(true);
     let id = getYoutubeId(value);
-    // axios({
-    //   url, //your url
-    //   method: 'GET',
-    //   responseType: 'blob', // important
-    // }).then((response) => {
-    //    const url = window.URL.createObjectURL(new Blob([response.data]));
-    //    const link = document.createElement('a');
-    //    link.href = url;
-    //    link.setAttribute('download', `${Date.now()}.jpg`); //or any other extension
-    //    document.body.appendChild(link);
-    //    link.click();
-    //    link.remove();
-    // });
-    fetch(`${API_URL}downloadImage?url=${url}&filename=${id.replace(/ /g,"_")}`)
-    .then(res => res.json())
-    .then(json => {
-      let downloadLinkBtn = document.createElement('a');
-      downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
-      downloadLinkBtn.setAttribute('download',`image${Date.now()}`);
-      document.body.appendChild(downloadLinkBtn);
-      downloadLinkBtn.click();
-      downloadLinkBtn.remove();
-      isLoading(false);
+    axios({
+      url, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+    }).then((response) => {
+       const url = window.URL.createObjectURL(new Blob([response.data]));
+       const link = document.createElement('a');
+       link.href = url;
+       link.setAttribute('download', `${Date.now()}.jpg`); //or any other extension
+       document.body.appendChild(link);
+       link.click();
+       link.remove();
     });
+    // fetch(`${API_URL}downloadImage?url=${url}&filename=${id.replace(/ /g,"_")}`)
+    // .then(res => res.json())
+    // .then(json => {
+    //   let downloadLinkBtn = document.createElement('a');
+    //   downloadLinkBtn.setAttribute('href',`/${json[0]['path']}`);
+    //   downloadLinkBtn.setAttribute('download',`image${Date.now()}`);
+    //   document.body.appendChild(downloadLinkBtn);
+    //   downloadLinkBtn.click();
+    //   downloadLinkBtn.remove();
+    //   isLoading(false);
+    // });
   }
   function getYoutubeId(url){
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
