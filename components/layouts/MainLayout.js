@@ -74,8 +74,9 @@ export default function MainLayout({ children }) {
       <footer className="bg-dark p-5">
         <Link href="/"><a className="text-white mr-2">Home</a></Link>
         <a className="text-white mr-2" href="/blog">Blog</a>
-        
+        <a className="text-white " href="https://youtube.thumbnail-download.me/">YouTube Thumbnail Downloader</a>&nbsp;
         <a className="text-white " href="/blog/contact-us">Contact Us</a>
+
       </footer>
     </>
   )
