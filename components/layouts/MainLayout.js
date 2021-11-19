@@ -17,7 +17,7 @@ export default function MainLayout({ children }) {
           <div className="row">
             <Link href="/dailytask"><a className="text-dark">Daily Task</a></Link>
             <span className="mx-2">|</span>
-            <Link href="/"><a className="text-dark ">Youtube Thumbnail Downloader</a></Link>
+            <Link href="/yt-thumbnail"><a className="text-dark ">Youtube Thumbnail Downloader</a></Link>
             <span className="mx-2">|</span>
             <Link href="/dailytask"><a className="text-dark">Instagram Thumbnail Downloader</a></Link>
             <span className="mx-2">|</span>
