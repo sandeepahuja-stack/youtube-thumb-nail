@@ -14,6 +14,7 @@ app.get("/",function(request,response){
 });
 
 app.get("/videoInfo",async function(request,response){
+  console.log("here");
 	const videoURL = request.query.videoURL;
 	const info = await ytdl.getInfo(videoURL);
 	response.status(200).json(info);

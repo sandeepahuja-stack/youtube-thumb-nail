@@ -6,13 +6,26 @@ export default function MainLayout({ children }) {
   return (
     <>
     <Head>
-        <title>My page title</title>
+        <title>Multi Task Web Portal</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
      <section className="py-3">
         
-        <h1 className="text-center  h2 "><Link href="/"><a className="text-danger text-decoration-none">Youtube Downloader</a></Link></h1>
-        <p className="text-center m-0 text-dark font-weight-semi">Convert and download Youtube videos in MP3, MP4, 3GP for free</p>
+        <h1 className="text-center  h2 "><Link href="/"><a className="text-danger text-decoration-none">Multi Task Web Portal</a></Link></h1>
+        {/* <p className="text-center m-0 text-dark font-weight-semi">Convert and download Youtube videos in MP3, MP4, 3GP for free</p> */}
+        <div className="container">
+          <div className="row">
+            <Link href="/dailytask"><a className="text-dark">Daily Task</a></Link>
+            <span className="mx-2">|</span>
+            <Link href="/"><a className="text-dark ">Youtube Thumbnail Downloader</a></Link>
+            <span className="mx-2">|</span>
+            <Link href="/dailytask"><a className="text-dark">Instagram Thumbnail Downloader</a></Link>
+            <span className="mx-2">|</span>
+            <Link href="/dailytask"><a className="text-dark">Instagram Video Downloader</a></Link>
+            <span className="mx-2">|</span>
+            <Link href="/dailytask"><a className="text-dark">Youtube Video Downloader</a></Link>
+          </div>
+        </div>
         <hr/>
         {children}
       </section>

@@ -20,7 +20,7 @@ function Home() {
   }
   function convertVideo() {
     isLoading(true);
-    fetch(`${API_URL}check/streams/`, {
+    fetch(`${API_URL}videoInfo/`, {
       method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
