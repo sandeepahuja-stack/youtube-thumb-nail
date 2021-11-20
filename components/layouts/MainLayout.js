@@ -19,9 +19,9 @@ export default function MainLayout({ children }) {
             <span className="mx-2">|</span>
             <Link href="/yt-thumbnail"><a className="text-dark ">Youtube Thumbnail Downloader</a></Link>
             <span className="mx-2">|</span>
-            <Link href="/dailytask"><a className="text-dark">Instagram Thumbnail Downloader</a></Link>
+            <Link href="/insta-thumbnail"><a className="text-dark">Instagram Thumbnail Downloader</a></Link>
             <span className="mx-2">|</span>
-            <Link href="/dailytask"><a className="text-dark">Instagram Video Downloader</a></Link>
+            <Link href="/insta-video"><a className="text-dark">Instagram Video Downloader</a></Link>
             <span className="mx-2">|</span>
             <Link href="/dailytask"><a className="text-dark">Youtube Video Downloader</a></Link>
           </div>
