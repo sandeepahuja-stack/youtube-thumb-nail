@@ -23,7 +23,7 @@ export default function MainLayout({ children }) {
             <span className="mx-2">|</span>
             <Link href="/insta-video"><a className="text-dark">Instagram Video Downloader</a></Link>
             <span className="mx-2">|</span>
-            <Link href="/dailytask"><a className="text-dark">Youtube Video Downloader</a></Link>
+            <Link href="/yt-video"><a className="text-dark">Youtube Video Downloader</a></Link>
           </div>
         </div>
         <hr/>

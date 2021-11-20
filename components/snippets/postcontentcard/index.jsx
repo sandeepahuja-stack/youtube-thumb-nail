@@ -1,9 +1,11 @@
 import React from 'react'
-
+import Link from "next/link";
 function PostCard(props) {
-  const { url, alt, bg, heading, para } = props;
+  const { url, alt, bg, heading, para, link } = props;
   return (
     <>
+    <Link href={`${link}`}>
+      <a className="text-dark text-decoration-none">
       <div className="post-card">
         <div className={`post-image ${bg}`}>
           <img src={url} alt={alt} />
@@ -14,6 +16,8 @@ function PostCard(props) {
           <p>{para}</p>
         </div>
       </div>
+      </a>
+      </Link>
       <style jsx>
         {`
          .post-card{
@@ -47,7 +51,7 @@ function PostCard(props) {
           .post-content p {
             line-height: 18px;
             margin-bottom: 0;
-            height: 160px;
+            height: 260px;
           }
         
         `}
