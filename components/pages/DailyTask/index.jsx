@@ -86,7 +86,13 @@ function DailyTaskComponent() {
 
   return (
     <div>
-      
+       <div className="container pb-5">
+        <div className="pb-3 font-weight-bold">
+          <h2 className="text-center  ">Daily Task List </h2>
+          <p className="text-dark  text-center ">Daily Task List will be the part of this software application featuring the features that the user can add multiple task, and mark the priority of the task such as (Urgent, High , Medium , Low ), it is secured as the user data is only available in its client side in a local storage of the browser. If the task gets completed the user will select the checkbox or move it to completed status.
+          </p>
+        </div>
+        </div>
       <main className="container">
         <section className="row">
           <StatusLine
@@ -112,7 +118,7 @@ function DailyTaskComponent() {
             addTask={addTask}
             deleteTask={deleteTask}
             moveTask={moveTask}
-            status="Done"
+            status="Completed"
           />
         </section>
       </main>

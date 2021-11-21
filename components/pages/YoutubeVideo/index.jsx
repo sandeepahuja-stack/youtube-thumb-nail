@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Link from "next/link";
+import YTDownloadContent from "./snippets/YTDownloadContent";
+
 const API_URL = process.env.API_URL;
 
 
-function YoutubeThumbnail() {
+function YoutubeVideo() {
   const [value, setValue] = useState('');
   const [videoDataThumbNails, updateVideoDataThumbNails] = useState([]);
   const [isError, updateIsError] = useState(false);
@@ -18,10 +20,10 @@ function YoutubeThumbnail() {
   
   function convertImage(value){
     isLoading(true);
-    fetch(`${API_URL}instagram/image?url=${value}`)
+    fetch(`${API_URL}youtubegram/video?url=${value}`)
     .then(res => res.json())
     .then(json => {
-        window.open(json.image_link);
+        window.open(json.video_link);
       isLoading(false);
     });
   }
@@ -49,28 +51,26 @@ function YoutubeThumbnail() {
       </>
       }
     {/* <hr className="m-0"/> */}
-      
+      <div >
       {/* bg-dark-primary */}
         <div className="px-3   py-5" >
             <div className="container py-2 bg-light-primary  hero-container text-dark">
-                <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">The Best Insta Thumbnail Downloader</a></Link></h1>
-                <p className="text-center   font-weight-semi text-dark">Thumbnail Downloader helps you to save Insta thumbnail to your device.</p>
-                <p className="text-center   font-weight-semi text-dark">Instagram Photos Downloader will be the part of this software application featuring the features that it can download the Instagram Photos educational videos and songs. It will be able to extract or download the desired Instagram Photos video by putting its URL and getting the desired result. Also, feasibility to get the HD photos.</p>
-             <div>
-
+                <h1 className="text-center m-0 main-heading "><Link href="/"><a className="text-dark text-decoration-none">The Best Youtube Video Downloader</a></Link></h1>
+                <p className="text-center   font-weight-semi text-dark">Video Downloader helps you to save youtube Video to your device.</p>
+            
             
               <div className="row justify-content-center ">
                 <div className="col-md-8 mb-2">
-                  <input type="search" className="form-control input" placeholder="Paste your Insta link here" onChange={handleChange} />
+                  <input type="search" className="form-control input" placeholder="Paste your youtube link here" onChange={handleChange} />
                 </div>
                 <div>
-                  <button className="btn-danger  btn " onClick={()=>{convertImage(value)}} target="_blank">Get Thumbnail</button>
+                  <button className="btn-danger  btn " onClick={()=>{convertImage(value)}} target="_blank">Get Video</button>
                 </div>
               </div>
               {isError && <p className="text-danger text-center m-0">Url entered is wrong</p>}
             </div>
         </div>
-        <hr className="m-0"/>
+        {/* <hr className="m-0"/> */}
         
           {videoDataThumbNails.length > 0 && 
             <>
@@ -91,13 +91,13 @@ function YoutubeThumbnail() {
                
                 
               </div>
-              <hr className="mt-5 mb-0" />
+              {/* <hr className="mt-5 mb-0" /> */}
             </>
           }
         
       </div>
       
-      
+      <YTDownloadContent />
       
       <style jsx>{
         `
@@ -182,4 +182,4 @@ function YoutubeThumbnail() {
   )
 }
 
-export default YoutubeThumbnail;
+export default YoutubeVideo;

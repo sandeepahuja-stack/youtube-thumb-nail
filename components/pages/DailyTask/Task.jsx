@@ -43,7 +43,7 @@ export default function Task(props) {
 
     if (task.status === "In Progress") {
       newStatus = "Backlog";
-    } else if (task.status === "Done") {
+    } else if (task.status === "Completed") {
       newStatus = "In Progress";
     }
 
@@ -58,7 +58,7 @@ export default function Task(props) {
     if (task.status === "Backlog") {
       newStatus = "In Progress";
     } else if (task.status === "In Progress") {
-      newStatus = "Done";
+      newStatus = "Completed";
     }
 
     if (newStatus !== "") {

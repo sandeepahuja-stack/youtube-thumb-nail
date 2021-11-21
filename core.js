@@ -59,7 +59,7 @@ app.get("/downloadImage",async function(request,response){
 // };
 
 // download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-//   console.log('done');
+//   console.log('Completed');
 // });
 
 
